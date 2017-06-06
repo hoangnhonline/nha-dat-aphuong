@@ -1,14 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html dir="ltr" lang="en-US" class="no-js ie ie6 lte7 lte8 lte9"><![endif]-->
-<!--[if IE 7 ]><html dir="ltr" lang="en-US" class="no-js ie ie7 lte7 lte8 lte9"><![endif]-->
-<!--[if IE 8 ]><html dir="ltr" lang="en-US" class="no-js ie ie8 lte8 lte9"><![endif]-->
-<!--[if IE 9 ]><html dir="ltr" lang="en-US" class="no-js ie ie9 lte9"><![endif]-->
-<!--[if IE 10 ]><html dir="ltr" lang="en-US" class="no-js ie ie10 lte10"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="vi">
-<!--<![endif]-->
-<head>	
-	<title>@yield('title')</title>
+<head>
+    <title>@yield('title')</title>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="robots" content="index,follow"/>
     <meta http-equiv="content-language" content="vi"/>
@@ -30,502 +24,1097 @@
     <meta name="twitter:description" content="@yield('site_description')" />
     <meta name="twitter:title" content="@yield('title')" />        
     <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
-	<link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
-	<!-- ===== Style CSS Common ===== -->
-	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/style.css') }}">
-	<!-- ===== Responsive CSS ===== -->
-    <link href="{{ URL::asset('assets/css/responsive.css') }}" rel="stylesheet">
-      <link rel="stylesheet" href="{{ URL::asset('backend/dist/css/sweetalert2.min.css') }}">  
-    
-    <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<link href='{{ URL::asset('assets/css/animations-ie-fix.css') }}' rel='stylesheet'>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.{{ URL::asset('assets/js/1.4.2/respond.min.js') }}"></script>
-	<![endif]-->
-	<style type="text/css">
-		.bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover{
-		color:#444 !important;
-	}
-		
-	</style>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="{{ URL::asset('assets/img/favicon.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap-responsive.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('assets/libraries/chosen/chosen.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('assets/libraries/bootstrap-fileupload/bootstrap-fileupload.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css/realia-blue.css') }}" type="text/css" id="color-variant-default">
+    <link rel="stylesheet" href="#" type="text/css" id="color-variant">
+
+    <title>Realia | HTML Template</title>
 </head>
-<body {{ \Request::route()->getName() == "home" ? 'class=page_home' : "" }}>
-	
-	<header id="header" class="header">
-		<!-- <div class="header-register">
-			<div class="container">
-				<div class="logon">
-		            <a href="/dang-nhap.htm" rel="nofollow" title="Đăng nhập">
-		                <span>Đăng nhập</span>
-		            </a>
-		        </div>
-		        <div class="register">
-		            <a href="/dang-ky.htm" rel="nofollow" title="Đăng ký">
-		                <span>Đăng ký</span>
-		            </a>
-		        </div>
-		        <div id="pnBxh">
-	          		<div class="bxh">
-		                <a href="#" rel="nofollow" title="Banxehoi.com" target="_blank">
-		                    <span>Banxehoi.com</span>
-		                </a>
-		            </div>
-				</div>
-			</div>
-		</div> -->
-		<div class="header-logo">
-	        <div class="container">
-	            <div class="logo">
-	                <a href="{{ route('home') }}" title="Logo">
-	                	<img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo">	                   
-	                </a>
-	            </div>
-	            <?php 
-				$bannerArr = DB::table('banner')->where(['object_id' => 4, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
-				?>	           
-	            <div class="banner_adv" id="Banner_tet" style="display: block;">	
-	            <?php $i = 0; ?>
-				@foreach($bannerArr as $banner)
-					<?php $i++; ?>
-	                @if($banner->ads_url !='')
-					<a href="{{ $banner->ads_url }}">
-					@endif
-	                    <img src="{{ Helper::showImage($banner->image_url) }}" alt="Banner top {{ $i }}"></a>
+<body>
+<div id="wrapper-outer" >
+    <div id="wrapper">
+        <div id="wrapper-inner">
+            <!-- BREADCRUMB -->
+            <div class="breadcrumb-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            <ul class="breadcrumb pull-left">
+                                <li><a href="index.html">Home</a></li>
+                            </ul><!-- /.breadcrumb -->
 
-	                 @if($banner->ads_url !='')
-					</a>
-					@endif
+                            <div class="account pull-right">
+                                <ul class="nav nav-pills">
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="registration.html">Registration</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- /.span12 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.breadcrumb-wrapper -->
 
-	            @endforeach
-	            </div>
-	        </div>
-	    </div>
-	</header><!-- /header -->
+            <!-- HEADER -->
+            <div id="header-wrapper">
+                <div id="header">
+                    <div id="header-inner">
+                        <div class="container">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <div class="row">
+                                        <div class="logo-wrapper span4">
+                                            <a href="#nav" class="hidden-desktop" id="btn-nav">Toggle navigation</a>
 
-	<nav id="mainNav" class="navbar navbar-default navbar-custom fix-header">
-        <div class="container" id="main-menu">
-        	<!-- Brand and toggle get grouped for better mobile display -->
-	        <div class="navbar-header">
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	              <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
-	            </button>
-			</div>
+                                            <div class="logo">
+                                                <a href="index.html" title="Home">
+                                                    <img src="{{ URL::asset('assets/img/logo.png') }}" alt="Home">
+                                                </a>
+                                            </div><!-- /.logo -->
 
-			@include('frontend.partials.home-menu')
+                                            <div class="site-name">
+                                                <a href="/" title="Home" class="brand">Realia</a>
+                                            </div><!-- /.site-name -->
+
+                                            <div class="site-slogan">
+                                                <span>Real estate &amp; Rental<br>made easy</span>
+                                            </div><!-- /.site-slogan -->
+                                        </div><!-- /.logo-wrapper -->
+
+                                        <div class="info">
+                                            <div class="site-email">
+                                                <a href="mailto:info@byaviators.com">info@byaviators.com</a>
+                                            </div><!-- /.site-email -->
+
+                                            <div class="site-phone">
+                                                <span>333-666-777</span>
+                                            </div><!-- /.site-phone -->
+                                        </div><!-- /.info -->
+
+                                        <a class="btn btn-primary btn-large list-your-property arrow-right" href="list-your-property.html">List your property</a>
+                                    </div><!-- /.row -->
+                                </div><!-- /.navbar-inner -->
+                            </div><!-- /.navbar -->
+                        </div><!-- /.container -->
+                    </div><!-- /#header-inner -->
+                </div><!-- /#header -->
+            </div><!-- /#header-wrapper -->
+
+            <!-- NAVIGATION -->
+            <div id="navigation">
+                <div class="container">
+                    <div class="navigation-wrapper">
+                        <div class="navigation clearfix-normal">
+
+                            <ul class="nav">
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Homepage</span>
+                                    <ul>
+                                        <li><a href="index-slider.html">Homepage with slider</a></li>
+                                        <li><a href="index.html">Homepage with map</a></li>
+                                        <li><a href="index-simple.html">Simple homepage</a></li>
+                                        <li><a href="index-carousel.html">Homepage with carousel</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Listing</span>
+                                    <ul>
+                                        <li><a href="listing-grid.html">Listing grid</a></li>
+                                        <li><a href="listing-grid-filter.html">Listing grid with filter</a></li>
+                                        <li><a href="listing-rows.html">Listing rows</a></li>
+                                        <li><a href="listing-rows-filter.html" >Listing rows with filter</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Pages</span>
+                                    <ul>
+                                        <li><a href="about-us.html">About us</a></li>
+                                        <li><a href="our-agents.html">Our agents</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                                        <li class="menuparent">
+                                            <span class="menuparent nolink">Another level</span>
+                                            <ul>
+                                                <li><a href="contact-us.html">Contact us</a></li>
+                                                <li><a href="grid-system.html">Grid system</a></li>
+                                                <li><a href="typography.html">Typography</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="404.html">404 page</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Pricing</span>
+                                    <ul>
+                                        <li><a href="pricing-boxed.html">Boxed pricing</a></li>
+                                        <li><a href="pricing-multiple.html">Multiple pricing</a></li>
+                                        <li><a href="pricing-simple.html">Simple Pricing</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul><!-- /.nav -->
+
+                            <div class="language-switcher">
+                                <div class="current en"><a href="/" lang="en">English</a></div><!-- /.current -->
+                                <div class="options">
+                                    <ul>
+                                        <li class="fr"><a href="#">Français</a></li>
+                                        <li class="de"><a href="#">Deutsch</a></li>
+                                    </ul>
+                                </div><!-- /.options -->
+                            </div><!-- /.language-switcher -->
+
+                            <form method="get" class="site-search" action="?">
+                                <div class="input-append">
+                                    <input title="Enter the terms you wish to search for." class="search-query span2 form-text" placeholder="Search" type="text" name="">
+                                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                                </div><!-- /.input-append -->
+                            </form><!-- /.site-search -->
+                        </div><!-- /.navigation -->
+                    </div><!-- /.navigation-wrapper -->
+                </div><!-- /.container -->
+            </div><!-- /.navigation -->
+
+            <!-- CONTENT -->
+            <div id="content"><div class="map-wrapper">
+    <div class="map">
+        <div id="map" class="map-inner"></div><!-- /.map-inner -->
+
+        <div class="container">
+            <div class="row">
+                <div class="span3">
+                    <div class="property-filter pull-right">
+                        <div class="content">
+                            <form method="get" action="?">
+                                <div class="location control-group">
+                                    <label class="control-label" for="inputLocation">
+                                        Location
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputLocation">
+                                            <option id="malibu">Malibu, CA</option>
+                                            <option id="palo-alto">Palo Alto, CA</option>
+                                        </select>
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="type control-group">
+                                    <label class="control-label" for="inputType">
+                                        Type
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputType">
+                                            <option id="apartment">Apartment</option>
+                                            <option id="condo">Condo</option>
+                                        </select>
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="beds control-group">
+                                    <label class="control-label" for="inputBeds">
+                                        Beds
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputBeds">
+                                            <option id="11">1</option>
+                                            <option id="21">2</option>
+                                        </select>
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="baths control-group">
+                                    <label class="control-label" for="inputBaths">
+                                        Baths
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputBaths">
+                                            <option id="1">1</option>
+                                            <option id="2">2</option>
+                                        </select>
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+
+                                <div class="rent control-group">
+                                    <div class="controls">
+                                        <label class="checkbox" for="inputRent">
+                                            <input type="checkbox" id="inputRent"> Rent
+                                        </label>
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="sale control-group">
+                                    <div class="controls">
+                                        <label class="checkbox" for="inputSale">
+                                            <input type="checkbox" id="inputSale"> Sale
+                                        </label>
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="price-from control-group">
+                                    <label class="control-label" for="inputPriceFrom">
+                                        Price from
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" id="inputPriceFrom" name="inputPriceFrom">
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="price-to control-group">
+                                    <label class="control-label" for="inputPriceTo">
+                                        Price to
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" id="inputPriceTo" name="inputPriceTo">
+                                    </div><!-- /.controls -->
+                                </div><!-- /.control-group -->
+
+                                <div class="price-value">
+                                    <span class="from"></span><!-- /.from -->
+                                    -
+                                    <span class="to"></span><!-- /.to -->
+                                </div><!-- /.price-value -->
+
+                                <div class="price-slider">
+                                </div><!-- /.price-slider -->
+
+                                <div class="form-actions">
+                                    <input type="submit" value="Filter now!" class="btn btn-primary btn-large">
+                                </div><!-- /.form-actions -->
+                            </form>
+                        </div><!-- /.content -->
+                    </div><!-- /.property-filter -->
+                </div><!-- /.span3 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.map -->
+</div><!-- /.map-wrapper -->
+<div class="container">
+    <div id="main">
+        <div class="row">
+            <div class="span9">
+                <h1 class="page-header">Featured properties</h1>
+                <div class="properties-grid">
+    <div class="row">
+        <div class="property span3">
+            <div class="image">
+                <div class="content">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-1.png') }}" alt="">
+                </div><!-- /.content -->
+
+                <div class="price">1 250 000€</div><!-- /.price -->
+                <div class="reduced">Reduced </div><!-- /.reduced -->
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="detail.html">27523 Pacific Coast</a></h2>
+            </div><!-- /.title -->
+
+            <div class="location">Palo Alto CA</div><!-- /.location -->
+            <div class="area">
+                <span class="key">Area:</span><!-- /.key -->
+                <span class="value">120</span><!-- /.value -->
+            </div><!-- /.area -->
+            <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+            <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+        </div><!-- /.property -->
+
+        <div class="property span3">
+            <div class="image">
+                <div class="content">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-2.png') }}" alt="">
+                </div><!-- /.content -->
+                <div class="price">1 250 000€</div><!-- /.price -->
+                <div class="reduced">Reduced </div><!-- /.reduced -->
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="detail.html">27523 Pacific Coast</a></h2>
+            </div><!-- /.title -->
+
+            <div class="location">Palo Alto CA</div><!-- /.location -->
+            <div class="area">
+                <span class="key">Area:</span><!-- /.key -->
+                <span class="value">120</span><!-- /.value -->
+            </div><!-- /.area -->
+            <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+            <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+        </div><!-- /.property -->
+
+        <div class="property span3">
+            <div class="image">
+                <div class="content">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
+                </div><!-- /.content -->
+
+                <div class="price">1 250 000€</div><!-- /.price -->
+                <div class="reduced">Reduced </div><!-- /.reduced -->
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="detail.html">27523 Pacific Coast</a></h2>
+            </div><!-- /.title -->
+
+            <div class="location">Palo Alto CA</div><!-- /.location -->
+            <div class="area">
+                <span class="key">Area:</span><!-- /.key -->
+                <span class="value">120</span><!-- /.value -->
+            </div><!-- /.area -->
+            <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+            <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+        </div><!-- /.property -->
+
+        <div class="property span3">
+            <div class="image">
+                <div class="content">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-4.png') }}" alt="">
+                </div><!-- /.content -->
+                <div class="price">1 250 000€</div><!-- /.price -->
+                <div class="reduced">Reduced </div><!-- /.reduced -->
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="detail.html">27523 Pacific Coast</a></h2>
+            </div><!-- /.title -->
+
+            <div class="location">Palo Alto CA</div><!-- /.location -->
+            <div class="area">
+                <span class="key">Area:</span><!-- /.key -->
+                <span class="value">120</span><!-- /.value -->
+            </div><!-- /.area -->
+            <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+            <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+        </div><!-- /.property -->
+
+        <div class="property span3">
+            <div class="image">
+                <div class="content">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-5.png') }}" alt="">
+                </div><!-- /.content -->
+
+                <div class="price">1 250 000€</div><!-- /.price -->
+                <div class="reduced">Reduced </div><!-- /.reduced -->
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="detail.html">27523 Pacific Coast</a></h2>
+            </div><!-- /.title -->
+
+            <div class="location">Palo Alto CA</div><!-- /.location -->
+            <div class="area">
+                <span class="key">Area:</span><!-- /.key -->
+                <span class="value">120</span><!-- /.value -->
+            </div><!-- /.area -->
+            <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+            <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+        </div><!-- /.property -->
+
+        <div class="property span3">
+            <div class="image">
+                <div class="content">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-6.png') }}" alt="">
+                </div><!-- /.content -->
+
+                <div class="price">1 250 000€</div><!-- /.price -->
+                <div class="reduced">Reduced </div><!-- /.reduced -->
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="detail.html">27523 Pacific Coast</a></h2>
+            </div><!-- /.title -->
+
+            <div class="location">Palo Alto CA</div><!-- /.location -->
+            <div class="area">
+                <span class="key">Area:</span><!-- /.key -->
+                <span class="value">120</span><!-- /.value -->
+            </div><!-- /.area -->
+            <div class="bedrooms"><div class="content">4</div></div><!-- /.bedrooms -->
+            <div class="bathrooms"><div class="content">3</div></div><!-- /.bathrooms -->
+        </div><!-- /.property -->
+    </div><!-- /.row -->
+</div><!-- /.properties-grid -->
+            </div>
+            <div class="sidebar span3">
+                <div class="widget our-agents">
+    <div class="title">
+        <h2>Our Agents</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <div class="agent">
+            <div class="image">
+                <img src="{{ URL::asset('assets/img/photos/emma-small.png') }}" alt="">
+            </div><!-- /.image -->
+            <div class="name">Victoria Summer</div><!-- /.name -->
+            <div class="phone">333-666-777</div><!-- /.phone -->
+            <div class="email"><a href="mailto:victoria@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+
+        <div class="agent">
+            <div class="image">
+                <img src="{{ URL::asset('assets/img/photos/john-small.png') }}" alt="">
+            </div><!-- /.image -->
+            <div class="name">John Doe</div><!-- /.name -->
+            <div class="phone">111-222-333</div><!-- /.phone -->
+            <div class="email"><a href="mailto:john.doe@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+    </div><!-- /.content -->
+</div><!-- /.our-agents -->
+                <div class="hidden-tablet">
+                    <div class="widget properties last">
+    <div class="title">
+        <h2>Latest Properties</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="{{ URL::asset('assets/img/tmp/property-small-4.png') }}" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="{{ URL::asset('assets/img/tmp/property-small-5.png') }}" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="{{ URL::asset('assets/img/tmp/property-small-6.png') }}" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="{{ URL::asset('assets/img/tmp/property-small-2.png') }}" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+    </div><!-- /.content -->
+</div><!-- /.properties -->
+                </div>
+            </div>
         </div>
-	</nav><!-- /navigation -->
+        <div class="carousel">
+    <h2 class="page-header">All properties</h2>
 
-	@yield('slider')
-	
-	@yield('search')
+    <div class="content">
+        <a class="carousel-prev" href="detail.html">Previous</a>
+        <a class="carousel-next" href="detail.html">Next</a>
+        <ul>
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-1.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-2.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-	<section class="main" id="site-main">
-		<section class="container">
-			<section class="row">
-				
-				@yield('content')
-				@if(\Request::route()->getName() != "ky-gui" && \Request::route()->getName() != "ky-gui-thanh-cong")
-				<section class="col-sm-4 col-xs-12 block-sitebar">
-					@if(\Request::route()->getName() != "home" )
-					<article class="block block-box-search">
-						<div class="block-title">
-						<?php $type = isset($type) ? $type : 1 ; ?>
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" class="{{ (isset($type) && $type == 1) ? "active" : "" }}"><a href="javascript:void(0)" data-type="1" aria-controls="bdsb" role="tab" data-toggle="tab">BDS BÁN</a></li>
-    							<li role="presentation" class="{{ (isset($type) && $type == 2) ? "active" : "" }}"><a href="javascript:void(0)" data-type="2" aria-controls="bdsct" role="tab" data-toggle="tab">BDS CHO THUÊ</a></li>
-							</ul>
-						</div>
-						<div class="block-contents">
-						 	<!-- Tab panes -->
-							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="bdsb">
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-									<form action="{{ route('search') }}" method="GET" accept-charset="utf-8" class="search-content-input selectpicker-cus block-hover-selectpicker">
-								    	<input type="hidden" name="type" id="type" value="{{ isset($type) ? $type : 1 }}">
-								    	<div class="row-select">
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
-													<option value="">Loại bất động sản</option>
-													@foreach($banList as $ban)
-													<option @if(isset($estate_type_id) && $estate_type_id == $ban->id) selected @endif class="option-lv1" value="{{ $ban->id }}">{{ $ban->name }}</option>
-													@endforeach
-												</select>
-											</div>											
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" id="district_id" name="district_id">
-													<option value="">Quận/Huyện</option>
-													@foreach($districtList as $district)
-													<option @if(isset($district_id) && $district_id == $district->id) selected @endif value="{{ $district->id }}">{{ $district->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" id="ward_id" name="ward_id" data-live-search="true">
-													<option value="">Phường/Xã</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" id="street_id" name="street_id" data-live-search="true">
-													<option value="">Đường/Phố</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" id="project_id" name="project_id">
-													<option value="">Dự án</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="price_id" id="price_id">
-													<option value="">Mức giá</option>
-													@foreach($priceList as $price)
-													<option @if(isset($price_id) && $price_id == $price->id) selected @endif value="{{ $price->id }}">{{ $price->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" id="area_id" name="area_id" data-live-search="true">
-													<option value="">Diện tích</option>
-													@foreach($areaList as $area)
-													<option @if(isset($area_id) && $area_id == $area->id) selected @endif value="{{ $area->id }}">{{ $area->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="direction_id">
-													<option value="">Hướng nhà</option>
-													@foreach($directionList as $dir)
-													<option @if(isset($direction_id) && $direction_id == $dir->id) selected @endif value="{{ $dir->id }}">{{ $dir->name }}</option>
-													@endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<select class="selectpicker form-control" data-live-search="true" name="no_room">
-													<option value="">Số phòng ngủ</option>
-													<option @if(isset($no_room) && $no_room == 1) selected @endif value="1">1+</option>
-													<option @if(isset($no_room) && $no_room == 2) selected @endif value="2">2+</option>
-													<option @if(isset($no_room) && $no_room == 3) selected @endif value="3">3+</option>
-													<option @if(isset($no_room) && $no_room == 4) selected @endif value="4">4+</option>
-													<option @if(isset($no_room) && $no_room == 5) selected @endif value="5">5+</option>
-													<option @if(isset($no_room) && $no_room == 6) selected @endif value="6">6+</option>
-												</select>
-											</div>											
-											<div class="form-group">
-												<button type="submit" id="btnSearch" class="btn btn-success"><i class="fa fa-search"></i> Tìm Kiếm</button>
-											</div>
-										</div>
-							    	</form>
-								</div>								
-							</div>
-						</div>
-					</article><!-- /block-box-search -->	
-					@endif
-					<article class="block-sidebar block-news-sidebar">
-						<div class="block-title-common">
-							<h3><span class="icon-tile"><i class="fa fa-star"></i></span> Tin xem nhiều</h3>
-						</div>
-						<div class="block-contents">
-							<ul class="block-list-sidebar block-icon-title">
-								@foreach($tinRandom as $tin)
-		                      
-		                      <li><h4><a href="{{ route('news-detail', ['slug' => $tin['slug'], 'id' => $tin['id']]) }}" title="">{{ $tin['title'] }}</a></h4></li>
-		                     
-		                      @endforeach
-								
-							</ul>
-						</div>
-					</article><!-- /block-news-sidebar -->
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-4.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-					<article class="block-sidebar block-news-sidebar">
-						<div class="block-title-common">
-							<h3><span class="icon-tile"><i class="fa fa-building-o"></i></span> Dự án nổi bật</h3>
-						</div>
-						<div class="block-contents block-contents2">
-							<ul class="block-list-sidebar block-slide-sidebar">
-								<div class="bxslider">
-								@if($landingList)
-									@foreach($landingList as $value)
-									<div class="large-item">
-		                                <a href="{{ route('detail-project', [$value->slug])}}" title=""><img src="{{ $value->image_url ? Helper::showImageThumb($value->image_url, 3, '306x194') : URL::asset('backend/dist/img/no-image.jpg') }}" alt="" /></a>
-		                                <h4><a href="{{ route('detail-project', [$value->slug])}}" title="">{{ $value->name }}</a></h4>
-		                                <p>{{ $value->address }}</p>
-		                            </div>
-		                            @endforeach
-		                        @endif
-								</div>
-								<div id="bx-pager" class="bx-thumbnail">
-									@if($landing2List)
-									@foreach($landing2List as $value)
-									<div class="item">
-										<div class="item-child">
-				                            <a data-slide-index="0" class="slide_title" onclick="location.href='{{ route('detail-project', [$value->slug])}}'" href="{{ route('detail-project', [$value->slug])}}" title=""><img class="avatar" src="{{ $value->image_url ? Helper::showImageThumb($value->image_url, 3, '306x194') : URL::asset('backend/dist/img/no-image.jpg') }}" alt="" /></a>
-				                            <div class="slide_info">
-				                                <a  onclick="location.href='{{ route('detail-project', [$value->slug])}}'" href="{{ route('detail-project', [$value->slug])}}" title="">{{ $value->name }}</a>
-				                                <p>{{ $value->address }}</p>
-				                            </div>
-			                            </div>
-			                        </div>
-			                        @endforeach
-			                        @endif			                       
-			                        
-								</div>
-							</ul>
-						</div>
-					</article><!-- /block-news-sidebar -->
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-5.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-					<article class="block-sidebar block-news-sidebar">
-						<div class="block-title-common">
-							<h3><span class="icon-tile"><i class="fa fa-th-list"></i></span> Liên kết nổi bật</h3>
-						</div>
-						<div class="block-contents">
-							<ul class="block-list-sidebar block-icon1-title">
-								@foreach($customLink as $link)
-								<li><h4><a href="{{ $link->link_url }}" title="{{ $link->link_text }}">{{ $link->link_text }}</a></h4></li>
-								@endforeach
-							</ul>							
-						</div>
-					</article><!-- /block-news-sidebar -->
-				</section><!-- /block-site-right -->
-				@endif
-			</section>
-		</section>
-		<section class="block block-get-news">
-			<div class="container">
-				<div class="block-contents">
-					<form action="" method="get" >
-						<input type="text" name="" value="" placeholder="Nhập địa chỉ email">
-						<button type="button" class="btnConfirm">Đăng ký</button>
-					</form>
-				</div>
-			</div>
-		</section><!-- /block-get-news -->
-	</section><!-- /main -->
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-6.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-	
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-1.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-	@include('frontend.home.footer')
-	
-	@include('frontend.partials.ads')	
-	
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-2.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-	<a id="return-to-top" class="td-scroll-up" href="javascript:void(0)">
-  		<i class="fa fa-angle-up" aria-hidden="true"></i>
-	</a>
-	<!-- RETURN TO TOP -->
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
 
-	<!-- ===== JS ===== -->
-	<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
-	<!-- JS Bootstrap -->
-	<script src="{{ URL::asset('assets/vendor/bootstrap/bootstrap.min.js') }}"></script>
-	<!-- ===== JS Bxslider ===== -->
-	<script src="{{ URL::asset('assets/vendor/bxslider/jquery.bxslider.min.js') }}"></script>
-	<!-- ===== JS Bxslider ===== -->
-	<script src="{{ URL::asset('assets/vendor/owl-carousel/owl.carousel.min.js') }}"></script>
-	<!-- JS Sticky -->
-	<script src="{{ URL::asset('assets/vendor/sticky/jquery.sticky.js') }}"></script>
-	<!-- ===== JS Bootstrap Select ===== -->
-	<script src="{{ URL::asset('assets/vendor/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
-	<!-- Js Common -->
-	<script src="{{ URL::asset('backend/dist/js/sweetalert2.min.js') }}"></script>
-	<script src="{{ URL::asset('assets/js/common.js') }}"></script>
-	@yield('javascript_page')
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$.ajaxSetup({
-		        headers: {
-		          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		        }
-		    });
-		    @if(isset($district_id) && $district_id > 0)
-		    var district_id = {{ $district_id }};
-		    $('#district_id').val(district_id);
-		    $.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'ward',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#ward_id').html(data).selectpicker('refresh');
-						@if(isset($ward_id) && $ward_id > 0)
-						$('#ward_id').val({{ $ward_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
+            <li>
+                <div class="image">
+                    <a href="detail.html"></a>
+                    <img src="{{ URL::asset('assets/img/tmp/property-small-4.png') }}" alt="">
+                </div><!-- /.image -->
+                <div class="title">
+                    <h3><a href="detail.html">27523 Pacific Coast</a></h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location-->
+                <div class="price">€2 300 000</div><!-- .price -->
+                <div class="area">
+                    <span class="key">Area:</span>
+                    <span class="value">750m<sup>2</sup></span>
+                </div><!-- /.area -->
+                <div class="bathrooms"><div class="inner">3</div></div><!-- /.bathrooms -->
+                <div class="bedrooms"><div class="inner">3</div></div><!-- /.bedrooms -->
+            </li>
+        </ul>
+    </div><!-- /.content -->
+</div><!-- /.carousel -->        <div class="features">
+    <h2 class="page-header">Theme features</h2>
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'street',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#street_id').html(data).selectpicker('refresh');
-						@if(isset($street_id) && $street_id > 0)
-						$('#street_id').val({{ $street_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
+    <div class="row">
+        <div class="item span4">
+            <div class="row">
+                <div class="icon span1">
+                    <img src="{{ URL::asset('assets/img/icons/features-seo.png') }}" alt="">
+                </div><!-- /.icon -->
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'project',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#project_id').html(data).selectpicker('refresh');
-						@if(isset($project_id) && $project_id > 0)
-						$('#project_id').val({{ $project_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-		    @endif
-		    $('.bxslider').bxSlider({
-				pagerCustom: '#bx-pager',
-				pager: true,
-				auto: true,
-				pause: 4000
-			});
-			$('#district_id').change(function(){
-				var district_id = $(this).val();
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'ward',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#ward_id').html(data).selectpicker('refresh');
-					}
-				});
+                <div class="text span3">
+                    <h3>SEO Ready</h3>
+                    <p>Realia is ready to put your website on higher ranks. Every line of code was developed with SEO principles in mind.</p>
+                </div><!-- /.logo -->
+            </div><!-- /.row -->
+        </div><!-- /.item -->
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'street',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#street_id').html(data).selectpicker('refresh');
-					}
-				});
+        <div class="item span4">
+            <div class="row">
+                <div class="icon span1">
+                    <img src="{{ URL::asset('assets/img/icons/features-retina.png') }}" alt="">
+                </div><!-- /.icon -->
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'project',
-						col : 'district_id',
-						id : district_id
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#project_id').html(data).selectpicker('refresh');
-					}
-				});
-			});
+                <div class="text span3">
+                    <h3>Retina Ready</h3>
+                    <p>Realia looks great even on Retina and high-resoultion displays. Every graphic element is sharp and clean. No blurry images anymore!</p>
+                </div><!-- /.logo -->
+            </div><!-- /.row -->
+        </div><!-- /.item -->
 
+        <div class="item span4">
+            <div class="row">
+                <div class="icon span1">
+                    <img src="{{ URL::asset('assets/img/icons/features-custom-widgets.png') }}" alt="">
+                </div><!-- /.icon -->
 
+                <div class="text span3">
+                    <h3>Custom Widgets</h3>
+                    <p>Realia provides custom developed widgets to fulfil requirements of good real estate application.</p>
+                </div><!-- /.logo -->
+            </div><!-- /.row -->
+        </div><!-- /.item -->
+    </div>
+    <div class="row">
+        <div class="item span4">
+            <div class="row">
+                <div class="icon span1">
+                    <img src="{{ URL::asset('assets/img/icons/features-bootstrap.png') }}" alt="">
+                </div><!-- /.icon -->
 
-			$('.block-box-search li a').click(function(){
-				obj = $(this);
-				var type = obj.data('type');
-				$('#type').val(type);
-				$('.block-box-search li').removeClass('active');
-				obj.parents('li').addClass('active');
+                <div class="text span3">
+                    <h3>Prepared for Bootstrap</h3>
+                    <p>Developer friendly code based on Bootstrap and SASS makes your own customizations really easy.</p>
+                </div><!-- /.logo -->
+            </div><!-- /.row -->
+        </div><!-- /.item -->
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'estate_type',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#estate_type_id').html(data).selectpicker('refresh');
-						@if(isset($estate_type_id) && $estate_type_id > 0)
-						$('#estate_type_id').val({{ $estate_type_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'price',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#price_id').html(data).selectpicker('refresh');
-						@if(isset($price_id) && $price_id > 0)
-						$('#price_id').val({{ $price_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-			});
-			@if(isset($type) && $type >0)
-				var type = {{ $type }};
-				$('#type').val({{ $type }});
-				$('.block-box-search li').removeClass('active');
-				$('.block-box-search li a[data-type={{$type}}]').parents('li').addClass('active');
+        <div class="item span4">
+            <div class="row">
+                <div class="icon span1">
+                    <img src="{{ URL::asset('assets/img/icons/features-pencil.png') }}" alt="">
+                </div><!-- /.icon -->
 
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'estate_type',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#estate_type_id').html(data).selectpicker('refresh');
-						@if(isset($estate_type_id) && $estate_type_id > 0)
-						$('#estate_type_id').val({{ $estate_type_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-				$.ajax({
-					url : '{{ route('get-child') }}',
-					data : {
-						mod : 'price',
-						col : 'type',
-						id : type
-					},
-					type : 'POST',
-					dataType : 'html',
-					success : function(data){
-						$('#price_id').html(data).selectpicker('refresh');
-						@if(isset($price_id) && $price_id > 0)
-						$('#price_id').val({{ $price_id }}).selectpicker('refresh');
-						@endif
-					}
-				});
-			@endif
-		});
-		
-	</script>
+                <div class="text span3">
+                    <h3>Frontend Submission</h3>
+                    <p>Make the portal solution from your real estate by providing property submission on homepage.</p>
+                </div><!-- /.logo -->
+            </div><!-- /.row -->
+        </div><!-- /.item -->
 
+        <div class="item span4">
+            <div class="row">
+                <div class="icon span1">
+                    <img src="{{ URL::asset('assets/img/icons/features-responsive.png') }}" alt="">
+                </div><!-- /.icon -->
+
+                <div class="text span3">
+                    <h3>Responsive</h3>
+                    <p>Realia is ready to put your website on higher ranks. Every line of code was developed with SEO principles in mind.</p>
+                </div><!-- /.logo -->
+            </div><!-- /.row -->
+        </div><!-- /.item -->
+    </div><!-- /.row -->
+</div><!-- /.features -->    </div>
+</div>
+
+<div class="bottom-wrapper">
+    <div class="bottom container">
+        <div class="bottom-inner row">
+            <div class="item span4">
+                <div class="address decoration"></div>
+                <h2><a>List your property</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan dui ac nunc imperdiet rhoncus. Aenean vitae imperdiet lectus</p>
+                <a href="#" class="btn btn-primary">Read more</a>
+            </div><!-- /.item -->
+
+            <div class="item span4">
+                <div class="gps decoration"></div>
+                <h2><a>Advertise rentals</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan dui ac nunc imperdiet rhoncus. Aenean vitae imperdiet lectus</p>
+                <a href="#" class="btn btn-primary">Read more</a>
+            </div><!-- /.item -->
+
+            <div class="item span4">
+                <div class="key decoration"></div>
+                <h2><a>Guidance</a></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan dui ac nunc imperdiet rhoncus. Aenean vitae imperdiet lectus</p>
+                <a href="#" class="btn btn-primary">Read more</a>
+            </div><!-- /.item -->
+        </div><!-- /.bottom-inner -->
+    </div><!-- /.bottom -->
+</div><!-- /.bottom-wrapper -->    </div><!-- /#content -->
+</div><!-- /#wrapper-inner -->
+
+<div id="footer-wrapper">
+    <div id="footer-top">
+        <div id="footer-top-inner" class="container">
+            <div class="row">
+                <div class="widget properties span3">
+                    <div class="title">
+                        <h2>Most Recent</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <div class="property">
+                            <div class="image">
+                                <a href="detail.html"></a>
+                                <img src="{{ URL::asset('assets/img/tmp/property-small-1.png') }}" alt="">
+                            </div><!-- /.image -->
+                            <div class="wrapper">
+                                <div class="title">
+                                    <h3>
+                                        <a href="detail.html">27523 Pacific Coast</a>
+                                    </h3>
+                                </div><!-- /.title -->
+                                <div class="location">Palo Alto CA</div><!-- /.location -->
+                                <div class="price">€2 300 000</div><!-- /.price -->
+                            </div><!-- /.wrapper -->
+                        </div><!-- /.property -->
+
+                        <div class="property">
+                            <div class="image">
+                                <a href="detail.html"></a>
+                                <img src="{{ URL::asset('assets/img/tmp/property-small-2.png') }}" alt="">
+                            </div><!-- /.image -->
+                            <div class="wrapper">
+                                <div class="title">
+                                    <h3>
+                                        <a href="detail.html">27523 Pacific Coast</a>
+                                    </h3>
+                                </div><!-- /.title -->
+                                <div class="location">Palo Alto CA</div><!-- /.location -->
+                                <div class="price">€2 300 000</div><!-- /.price -->
+                            </div><!-- /.wrapper -->
+                        </div><!-- /.property -->
+
+                        <div class="property">
+                            <div class="image">
+                                <a href="detail.html"></a>
+                                <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
+                            </div><!-- /.image -->
+                            <div class="wrapper">
+                                <div class="title">
+                                    <h3>
+                                        <a href="detail.html">27523 Pacific Coast</a>
+                                    </h3>
+                                </div><!-- /.title -->
+                                <div class="location">Palo Alto CA</div><!-- /.location -->
+                                <div class="price">€2 300 000</div><!-- /.price -->
+                            </div><!-- /.wrapper -->
+                        </div><!-- /.property -->
+                    </div><!-- /.content -->
+                </div><!-- /.properties-small -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2>Contact us</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <table class="contact">
+                            <tbody>
+                            <tr>
+                                <th class="address">Address:</th>
+                                <td>1900 Pico Blvd<br>Santa Monica, CA 90405<br>United States<br></td>
+                            </tr>
+                            <tr>
+                                <th class="phone">Phone:</th>
+                                <td>+48 123 456 789</td>
+                            </tr>
+                            <tr>
+                                <th class="email">E-mail:</th>
+                                <td><a href="mailto:info@yourcompany.com">info@example.com</a></td>
+                            </tr>
+                            <tr>
+                                <th class="skype">Skype:</th>
+                                <td>your.company</td>
+                            </tr>
+                            <tr>
+                                <th class="gps">GPS:</th>
+                                <td>34.016811<br>-118.469009</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">Useful links</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <ul class="menu nav">
+                            <li class="first leaf"><a href="404.html">404 page</a></li>
+                            <li class="leaf"><a href="about-us.html">About us</a></li>
+                            <li class="leaf"><a href="contact-us.html">Contact us</a></li>
+                            <li class="leaf"><a href="faq.html">FAQ</a></li>
+                            <li class="leaf"><a href="grid-system.html">Grid system</a></li>
+                            <li class="leaf"><a href="our-agents.html">Our agents</a></li>
+                            <li class="last leaf"><a href="typography.html">Typography</a></li>
+                        </ul>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">Say hello!</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <form method="post">
+                            <div class="control-group">
+                                <label class="control-label" for="inputName">
+                                    Name
+                                    <span class="form-required" title="This field is required.">*</span>
+                                </label>
+                                <div class="controls">
+                                    <input type="text" id="inputName">
+                                </div><!-- /.controls -->
+                            </div><!-- /.control-group -->
+
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">
+                                    Email
+                                    <span class="form-required" title="This field is required.">*</span>
+                                </label>
+                                <div class="controls">
+                                    <input type="text" id="inputEmail">
+                                </div><!-- /.controls -->
+                            </div><!-- /.control-group -->
+
+                            <div class="control-group">
+                                <label class="control-label" for="inputMessage">
+                                    Message
+                                    <span class="form-required" title="This field is required.">*</span>
+                                </label>
+
+                                <div class="controls">
+                                    <textarea id="inputMessage"></textarea>
+                                </div><!-- /.controls -->
+                            </div><!-- /.control-group -->
+
+                            <div class="form-actions">
+                                <input type="submit" class="btn btn-primary arrow-right" value="Send">
+                            </div><!-- /.form-actions -->
+                        </form>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+            </div><!-- /.row -->
+        </div><!-- /#footer-top-inner -->
+    </div><!-- /#footer-top -->
+
+    <div id="footer" class="footer container">
+        <div id="footer-inner">
+            <div class="row">
+                <div class="span6 copyright">
+                    <p>© Copyright 2013 by <a href="http://themes.byaviators.com">Aviators</a>. All rights reserved.</p>
+                </div><!-- /.copyright -->
+
+                <div class="span6 share">
+                    <div class="content">
+                        <ul class="menu nav">
+                            <li class="first leaf"><a href="http://www.facebook.com" class="facebook">Facebook</a></li>
+                            <li class="leaf"><a href="http://flickr.net" class="flickr">Flickr</a></li>
+                            <li class="leaf"><a href="http://plus.google.com" class="google">Google+</a></li>
+                            <li class="leaf"><a href="http://www.linkedin.com" class="linkedin">LinkedIn</a></li>
+                            <li class="leaf"><a href="http://www.twitter.com" class="twitter">Twitter</a></li>
+                            <li class="last leaf"><a href="http://www.vimeo.com" class="vimeo">Vimeo</a></li>
+                        </ul>
+                    </div><!-- /.content -->
+                </div><!-- /.span6 -->
+            </div><!-- /.row -->
+        </div><!-- /#footer-inner -->
+    </div><!-- /#footer -->
+</div><!-- /#footer-wrapper -->
+</div><!-- /#wrapper -->
+</div><!-- /#wrapper-outer -->
+
+<div class="palette">
+    <div class="toggle">
+        <a href="#">Toggle</a>
+    </div><!-- /.toggle -->
+
+    <div class="inner">
+        <div class="headers">
+            <h2>Header styles</h2>
+            <ul>
+                <li><a class="header-light">Light</a></li>
+                <li><a class="header-normal">Normal</a></li>
+                <li><a class="header-dark">Dark</a></li>
+            </ul>
+        </div><!-- /.headers -->
+
+        <div class="patterns">
+            <h2>Background patterns</h2>
+            <ul>
+                <li><a class="pattern-cloth-alike">cloth-alike</a></li>
+                <li><a class="pattern-corrugation">corrugation</a></li>
+                <li><a class="pattern-diagonal-noise">diagonal-noise</a></li>
+                <li><a class="pattern-dust">dust</a></li>
+                <li><a class="pattern-fabric-plaid">fabric-plaid</a></li>
+                <li><a class="pattern-farmer">farmer</a></li>
+                <li><a class="pattern-grid-noise">grid-noise</a></li>
+                <li><a class="pattern-lghtmesh">lghtmesh</a></li>
+                <li><a class="pattern-pw-maze-white">pw-maze-white</a></li>
+                <li><a class="pattern-none">none</a></li>
+            </ul>
+        </div>
+
+        <div class="colors">
+            <h2>Color variants</h2>
+            <ul>
+                <li><a href="{{ URL::asset('assets/css/realia-red.css') }}" class="red">Red</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-magenta.css') }}" class="magenta">Magenta</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-brown.css') }}" class="brown">Brown</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-orange.css') }}" class="orange">Orange</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-brown-dark.css') }}" class="brown-dark">Brown dark</a></li>
+
+                <li><a href="{{ URL::asset('assets/css/realia-gray-red.css') }}" class="gray-red">Gray Red</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-magenta.css') }}" class="gray-magenta">Gray Magenta</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-brown.css') }}" class="gray-brown">Gray Brown</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-orange.css') }}" class="gray-orange">Gray Orange</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-brown-dark.css') }}" class="gray-brown-dark">Gray Brown dark</a></li>
+
+                <li><a href="{{ URL::asset('assets/css/realia-green-light.css') }}" class="green-light">Green light</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-green.css') }}" class="green">Green</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-turquiose.css') }}" class="turquiose">Turquiose</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-blue.css') }}" class="blue">Blue</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-violet.css') }}" class="violet">Violet</a></li>
+
+                <li><a href="{{ URL::asset('assets/css/realia-gray-green-light.css') }}" class="gray-green-light">Gray Green light</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-green.css') }}" class="gray-green">Gray Green</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-turquiose.css') }}" class="gray-turquiose">Gray Turquiose</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-blue.css') }}" class="gray-blue">Gray Blue</a></li>
+                <li><a href="{{ URL::asset('assets/css/realia-gray-violet.css') }}" class="gray-violet">Gray Violet</a></li>
+            </ul>
+        </div><!-- /.colors -->
+
+        <a href="#" class="btn btn-primary reset">Reset default</a>
+    </div><!-- /.inner -->
+</div><!-- /.palette -->
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/jquery.ezmark.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/jquery.currency.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/jquery.cookie.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/retina.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/carousel.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/gmap3.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/gmap3.infobox.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/libraries/chosen/chosen.jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/libraries/iosslider/_src/jquery.iosslider.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/js/realia.js') }}"></script>
 </body>
 </html>
