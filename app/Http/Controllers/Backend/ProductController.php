@@ -160,7 +160,7 @@ class ProductController extends Controller
     }
     public function ajaxGetTienIch(Request $request){
         $district_id = $request->district_id;
-        $tienIchLists = Tag::where(['type' => 3, 'district_id' => $district_id])->get();
+        $tienIchLists = Tag::where(['type' => 3])->get();
         return view('backend.product.ajax-get-tien-ich', compact( 'tienIchLists'));   
     }
     public function saveOrderHot(Request $request){
@@ -235,7 +235,7 @@ class ProductController extends Controller
         $streetList = Street::where('district_id', $district_id)->get();
         $projectList = Project::where('district_id', $district_id)->get();
 
-        $tienIchLists = Tag::where(['type' => 3, 'district_id' => $district_id])->get();
+        $tienIchLists = Tag::where(['type' => 3])->get();
         $areaList = Area::all();
         return view('backend.product.create', compact('estateTypeArr',   'estate_type_id', 'type', 'district_id', 'districtList', 'wardList', 'streetList', 'projectList', 'priceUnitList', 'tagArr', 'tienIchLists', 'directionArr', 'priceList', 'areaList'));
     }
@@ -471,7 +471,7 @@ class ProductController extends Controller
         $tagSelected = Product::productTag($id);
         $tienIchSelected = Product::productTienIch($id);
         
-        $tienIchLists = Tag::where(['type' => 3, 'district_id' => $detail->district_id])->get();
+        $tienIchLists = Tag::where(['type' => 3])->get();
         $directionArr = Direction::all();
         $areaList = Area::all();
         return view('backend.product.edit', compact( 'detail', 'hinhArr', 'estateTypeArr',  'meta', 'priceUnitList', 'districtList', 'wardList', 'streetList','projectList', 'detailEstate', 'tagSelected', 'tagArr', 'tienIchLists', 'tienIchSelected', 'directionArr', 'areaList', 'priceList'));

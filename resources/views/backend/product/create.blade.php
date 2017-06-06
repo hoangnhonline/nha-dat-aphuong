@@ -410,7 +410,6 @@
 </div>
 <input type="hidden" id="route_upload_tmp_image_multiple" value="{{ route('image.tmp-upload-multiple') }}">
 <input type="hidden" id="route_upload_tmp_image" value="{{ route('image.tmp-upload') }}">
-<input type="hidden" id="route_get_tien_ich" value="{{ route('product.ajax-get-tien-ich') }}">
 <style type="text/css">
   .nav-tabs>li.active>a{
     color:#FFF !important;
@@ -748,19 +747,6 @@ $(document).on('click', '#btnSaveTagAjax', function(){
       });
       
       $('#district_id').change(function(){
-         
-            $.ajax({
-              url: $('#route_get_tien_ich').val(),
-              type: "GET",
-              async: false,      
-              data: {
-                district_id : $(this).val()
-              },              
-              success: function (response) {
-                $('#load-tien-ich').html(response)             
-              }
-            });
-
             var district_id = $(this).val();
           $.ajax({
             url : '{{ route('get-child') }}',

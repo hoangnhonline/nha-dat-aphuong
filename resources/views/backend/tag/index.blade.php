@@ -34,19 +34,7 @@
                 <option value="2" {{ 2 == $type ? "selected" : "" }}>Bài viết</option>
                 <option value="3" {{ 3 ==  $type ? "selected" : "" }}>Tiện ích xung quanh</option>              
               </select>
-            </div>
-            <div class="form-group" id="div_tien_ich" @if( $type != 3 ) style="display:none" @endif>
-                <label for="email">&nbsp;&nbsp;&nbsp;Quận</label>
-                  <select class="form-control" name="district_id" id="district_id" data-live-search="true">
-                    <option value="">--Tất cả--</option>
-                      @foreach( $districtList as $value )
-                      <option value="{{ $value->id }}"
-                      {{ $district_id == $value->id ? "selected" : "" }}                           
-
-                      >{{ $value->name }}</option>
-                      @endforeach
-                  </select>
-              </div>
+            </div>            
             <div class="form-group">
               <label for="email">&nbsp;&nbsp;&nbsp;Từ khóa :</label>
               <input type="text" class="form-control" id="name" name="name" value="{{ $name }}">
@@ -136,7 +124,7 @@ function callDelete(name, url){
   return flag;
 }
 $(document).ready(function(){
-  $('#type, #district_id').change(function(){
+  $('#type').change(function(){
     $(this).parents('form').submit();
   });
   $('#table-list-data tbody').sortable({

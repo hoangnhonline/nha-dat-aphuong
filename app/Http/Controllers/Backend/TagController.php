@@ -30,12 +30,10 @@ class TagController extends Controller
         if( $name !='' ){
             $query->where('name', 'LIKE', '%'.$name.'%');
         }
-        if( $district_id > 0 ){
-            $query->where('district_id', '=', $district_id);
-        }
+        
         $items = $query->orderBy('id', 'desc')->paginate(50);
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
-        return view('backend.tag.index', compact( 'items', 'type', 'name', 'districtList', 'district_id'));
+        
+        return view('backend.tag.index', compact( 'items', 'type', 'name', 'district_id'));
     }
     public function ajaxList(Request $request){
 
@@ -50,9 +48,8 @@ class TagController extends Controller
         $query = Tag::where('type', $type);
         
         $tagArr = $query->orderBy('id', 'desc')->get();
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
-
-        return view('backend.tag.ajax-list', compact( 'tagArr', 'type', 'tagSelected', 'districtList'));
+       
+        return view('backend.tag.ajax-list', compact( 'tagArr', 'type', 'tagSelected'));
     }
     /**
     * Show the form for creating a new resource.
@@ -156,10 +153,9 @@ class TagController extends Controller
         $meta = (object) [];
         if ( $detail->meta_id > 0){
             $meta = MetaData::find( $detail->meta_id );
-        }
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
+        }       
 
-        return view('backend.tag.edit', compact( 'detail', 'meta', 'districtList'));
+        return view('backend.tag.edit', compact( 'detail', 'meta'));
     }
 
     /**
