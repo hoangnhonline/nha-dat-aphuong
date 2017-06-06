@@ -24,7 +24,7 @@
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu">
+        <ul class="treeview-menu">  
           <li {{ in_array(\Request::route()->getName(), ['product.index', 'product.edit']) ? "class=active" : "" }}><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
           <li {{ \Request::route()->getName() == "product.create" ? "class=active" : "" }}><a href="{{ route('product.create') }}"><i class="fa fa-circle-o"></i> Thêm BĐS</a></li>         
           @if(Auth::user()->role > 1)
