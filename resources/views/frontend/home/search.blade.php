@@ -1,125 +1,131 @@
 @section('search')
-<section class="block-search">
-	<div class="container">
-		<div class="block-title block-tab-customize">
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist" id="tab-search">
-				<li role="presentation" class="active"><a href="javascript:void(0)" data-type="1" >BẤT ĐỘNG SẢN BÁN</a></li>
-				<li role="presentation"><a href="javascript:void(0)" data-type="2" >BẤT ĐỘNG SẢN CHO THUÊ</a></li>
-			</ul>
-		</div>
-		<div class="block-contents">
-			<!-- Tab panes -->
-			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="home">
-			    	<form action="{{ route('search') }}" method="GET" accept-charset="utf-8" class="search-content-input selectpicker-cus">
-			    		<input type="hidden" id="type" value="1" name="type">				    	
-				    	<div class="row-select">
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" data-live-search="true" name="estate_type_id" id="estate_type_id">
-										<option selected="selected" value="">Loại bất động sản</option>
-										@foreach($banList as $ban)
-										<option value="{{ $ban->id }}">{!! $ban->name !!}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>								
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" data-live-search="true" id="district_id" name="district_id">
-										<option value="">Quận/Huyện</option>
-										@foreach($districtList as $district)
-										<option value="{{ $district->id }}">{!! $district->name !!}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" data-live-search="true" id="ward_id" name="ward_id">
-										<option value="">Phường/Xã</option>
-										
-									
-									</select>
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" id="street_id" name="street_id" data-live-search="true">
-										<option value="">Đường/Phố</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" data-live-search="true" id="project_id" name="project_id">
-										<option value="">Dự án</option>
-									</select>
-								</div>
-							</div>
-							
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" data-live-search="true" name="price_id" id="price_id">
-										<option value="">Mức giá</option>
-										@foreach($priceList as $price)
-										<option  value="{{ $price->id }}">{!! $price->name !!}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							
-						</div>
-						<div class="row-select">
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" id="area_id" name="area_id" data-live-search="true">
-										<option value="">Diện tích</option>
-										@foreach($areaList as $area)
-										<option value="{{ $area->id }}">{!! $area->name !!}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" data-live-search="true" name="direction_id">
-										<option value="">Hướng nhà</option>
-										@foreach($directionList as $dir)
-										<option value="{{ $dir->id }}">{!! $dir->name !!}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="col-xs-2">
-								<div class="form-group">
-									<select class="selectpicker form-control" data-live-search="true" name="no_room">
-										<option value="">Số phòng ngủ</option>
-										<option value="1">1+</option>
-										<option value="2">2+</option>
-										<option value="3">3+</option>
-										<option value="4">4+</option>
-										<option value="5">5+</option>
-										<option value="6">6+</option>
-									</select>
-								</div>
-							</div>								
-							<div class="col-xs-2 col-button">
-								<div class="form-group">
-									<button type="submit" id="btnSearch" class="btn btn-success btn-search-home"><i class="fa fa-search"></i> Tìm Kiếm</button>
-								</div>
-							</div>
-						</div>
-			    	</form>
-			    </div>
-			    <div role="tabpanel" class="tab-pane" id="profile">
-			    	
-			    </div>
-			  </div>
-		</div>
-	</div>
-</section><!-- /block-search -->
+<div class="map-wrapper">
+    <div class="map">
+        <div id="map" class="map-inner"></div>
+        <!-- /.map-inner -->
+        <div class="container">
+            <div class="row">
+                <div class="span3">
+                    <div class="property-filter pull-right">
+                        <div class="content">
+                            <form method="get" action="?">
+                                <div class="location control-group">
+                                    <label class="control-label" for="inputLocation">
+                                    Location
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputLocation">
+                                            <option id="malibu">Malibu, CA</option>
+                                            <option id="palo-alto">Palo Alto, CA</option>
+                                        </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="type control-group">
+                                    <label class="control-label" for="inputType">
+                                    Type
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputType">
+                                            <option id="apartment">Apartment</option>
+                                            <option id="condo">Condo</option>
+                                        </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="beds control-group">
+                                    <label class="control-label" for="inputBeds">
+                                    Beds
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputBeds">
+                                            <option id="11">1</option>
+                                            <option id="21">2</option>
+                                        </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="baths control-group">
+                                    <label class="control-label" for="inputBaths">
+                                    Baths
+                                    </label>
+                                    <div class="controls">
+                                        <select id="inputBaths">
+                                            <option id="1">1</option>
+                                            <option id="2">2</option>
+                                        </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="rent control-group">
+                                    <div class="controls">
+                                        <label class="checkbox" for="inputRent">
+                                        <input type="checkbox" id="inputRent"> Rent
+                                        </label>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="sale control-group">
+                                    <div class="controls">
+                                        <label class="checkbox" for="inputSale">
+                                        <input type="checkbox" id="inputSale"> Sale
+                                        </label>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="price-from control-group">
+                                    <label class="control-label" for="inputPriceFrom">
+                                    Price from
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" id="inputPriceFrom" name="inputPriceFrom">
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="price-to control-group">
+                                    <label class="control-label" for="inputPriceTo">
+                                    Price to
+                                    </label>
+                                    <div class="controls">
+                                        <input type="text" id="inputPriceTo" name="inputPriceTo">
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="price-value">
+                                    <span class="from"></span><!-- /.from -->
+                                    -
+                                    <span class="to"></span><!-- /.to -->
+                                </div>
+                                <!-- /.price-value -->
+                                <div class="price-slider">
+                                </div>
+                                <!-- /.price-slider -->
+                                <div class="form-actions">
+                                    <input type="submit" value="Filter now!" class="btn btn-primary btn-large">
+                                </div>
+                                <!-- /.form-actions -->
+                            </form>
+                        </div>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.property-filter -->
+                </div>
+                <!-- /.span3 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.map -->
+</div>
 @endsection
 @section('javascript_page')
 <script type="text/javascript">

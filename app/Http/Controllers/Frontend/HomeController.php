@@ -89,7 +89,7 @@ class HomeController extends Controller
                     ->where('product_img.image_url', '<>', '')                                         
                     ->orderBy('product.is_hot', 'desc')
                     ->orderBy('product.cart_status', 'asc')                    
-                    ->orderBy('product.id', 'desc')->limit(10)->get();
+                    ->orderBy('product.id', 'desc')->limit(6)->get();
         $hotProduct2 = Product::where('product.slug', '<>', '')
                     ->where('product.type', 2)
                     ->where('product.status', 1)
@@ -100,7 +100,7 @@ class HomeController extends Controller
                     ->orderBy('product.is_hot', 'desc')
                     ->orderBy('product.cart_status', 'asc')                    
                     ->orderBy('product.id', 'desc')                    
-                    ->limit(10)->get();
+                    ->limit(6)->get();
         
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
         $seo = $settingArr;
@@ -114,7 +114,7 @@ class HomeController extends Controller
         
         $khonggiansong = Articles::where('cate_id', 1)->orderBy('id', 'desc')->limit(6)->get()->toArray();
 
-        $luat = Articles::where('cate_id', 5)->orderBy('id', 'desc')->limit(6)->get()->toArray();
+        $luat = Articles::where('cate_id', 5)->orderBy('id', 'desc')->limit(4)->get()->toArray();
         $tuvan = Articles::where('cate_id', 6)->orderBy('id', 'desc')->limit(6)->get()->toArray();
 
         $phantich = Articles::where('cate_id', 1)->orderBy('id', 'desc')->limit(6)->get()->toArray();

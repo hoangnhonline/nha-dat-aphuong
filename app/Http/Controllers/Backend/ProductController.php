@@ -403,13 +403,31 @@ class ProductController extends Controller
                         //var_dump(config('icho.upload_path').$image_url, config('icho.upload_path').$destionation);die;
                         File::move(config('icho.upload_path').$image_url, config('icho.upload_path').$destionation);
 
-                        Image::make(config('icho.upload_path').$destionation)->resize(170, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                        })->crop(170, 128)->save(config('icho.upload_thumbs_path').$destionation);
+                        $imageArr['is_thumbnail'][] = $is_thumbnail = $dataArr['thumbnail_id'] == $image_url  ? 1 : 0;
+
+                        if($is_thumbnail == 1){
+                            $img = Image::make(config('icho.upload_path').$destionation);
+                            $w_img = $img->width();
+                            $h_img = $img->height();
+                            $tile = 0.002231;
+                            $w_tile = $w_img/270;
+                            $h_tile = $h_img/166;
+                           
+                            if($w_tile - $h_tile <= 0.002231){
+                                Image::make(config('icho.upload_path').$destionation)->resize(270, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                })->crop(270, 166)->save(config('icho.upload_thumbs_path').$destionation);
+                            }else{
+                                Image::make(config('icho.upload_path').$destionation)->resize(null, 166, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                })->crop(270, 166)->save(config('icho.upload_thumbs_path').$destionation);
+                            }
+
+                        }
 
                         $imageArr['name'][] = $destionation;
 
-                        $imageArr['is_thumbnail'][] = $dataArr['thumbnail_id'] == $image_url  ? 1 : 0;
+                        
                     }
                 }
             }
