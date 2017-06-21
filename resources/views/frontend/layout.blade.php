@@ -121,64 +121,27 @@
                             <div class="navigation-wrapper">
                                 <div class="navigation clearfix-normal">
                                     <ul class="nav">
+                                        <li >
+                                            <a href="{{ route('home') }}" class="active">Trang chủ</a>
+                                        </li>
                                         <li class="menuparent">
-                                            <span class="menuparent nolink">Homepage</span>
+                                            <span class="menuparent nolink">BĐS bán</span>
                                             <ul>
-                                                <li><a href="index-slider.html">Homepage with slider</a></li>
-                                                <li><a href="index.html">Homepage with map</a></li>
-                                                <li><a href="index-simple.html">Simple homepage</a></li>
-                                                <li><a href="index-carousel.html">Homepage with carousel</a></li>
+                                                 @foreach($banList as $ban)
+                                                    <li><a href="{{ route('danh-muc', $ban->slug ) }}">{!! $ban->name !!}</a></li>                         
+                                                    @endforeach
                                             </ul>
                                         </li>
                                         <li class="menuparent">
-                                            <span class="menuparent nolink">Listing</span>
+                                            <span class="menuparent nolink">BĐS cho thuê</span>
                                             <ul>
-                                                <li><a href="listing-grid.html">Listing grid</a></li>
-                                                <li><a href="listing-grid-filter.html">Listing grid with filter</a></li>
-                                                <li><a href="listing-rows.html">Listing rows</a></li>
-                                                <li><a href="listing-rows-filter.html" >Listing rows with filter</a></li>
+                                                @foreach($thueList as $thue)
+                                                <li><a href="{{ route('danh-muc', $thue->slug ) }}">{!! $thue->name !!}</a></li>                           
+                                                @endforeach
                                             </ul>
-                                        </li>
-                                        <li class="menuparent">
-                                            <span class="menuparent nolink">Pages</span>
-                                            <ul>
-                                                <li><a href="about-us.html">About us</a></li>
-                                                <li><a href="our-agents.html">Our agents</a></li>
-                                                <li><a href="faq.html">FAQ</a></li>
-                                                <li><a href="shortcodes.html">Shortcodes</a></li>
-                                                <li class="menuparent">
-                                                    <span class="menuparent nolink">Another level</span>
-                                                    <ul>
-                                                        <li><a href="contact-us.html">Contact us</a></li>
-                                                        <li><a href="grid-system.html">Grid system</a></li>
-                                                        <li><a href="typography.html">Typography</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="404.html">404 page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menuparent">
-                                            <span class="menuparent nolink">Pricing</span>
-                                            <ul>
-                                                <li><a href="pricing-boxed.html">Boxed pricing</a></li>
-                                                <li><a href="pricing-multiple.html">Multiple pricing</a></li>
-                                                <li><a href="pricing-simple.html">Simple Pricing</a></li>
-                                            </ul>
-                                        </li>
+                                        </li>                                      
                                         <li><a href="contact-us.html">Contact Us</a></li>
-                                    </ul>
-                                    <!-- /.nav -->
-                                    <div class="language-switcher">
-                                        <div class="current en"><a href="/" lang="en">English</a></div>
-                                        <!-- /.current -->
-                                        <div class="options">
-                                            <ul>
-                                                <li class="fr"><a href="#">Français</a></li>
-                                                <li class="de"><a href="#">Deutsch</a></li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.options -->
-                                    </div>
+                                    </ul>                                    
                                     <!-- /.language-switcher -->
                                     <form method="get" class="site-search" action="?">
                                         <div class="input-append">

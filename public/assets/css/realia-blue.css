@@ -2007,10 +2007,9 @@ iframe.map {
     right: 15px;
     bottom: 15px
 }
-.properties-grid .property .reduced {
-    background-color: #313131;
+.properties-grid .property .reduced {    
     color: #fff;
-    font-size: 18px;
+    font-size: 12px;
     padding: 5px 16px;
     position: absolute;
     left: 15px;
