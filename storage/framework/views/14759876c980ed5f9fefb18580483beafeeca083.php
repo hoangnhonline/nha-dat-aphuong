@@ -15,14 +15,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-      <?php if(Auth::user()->role == 3): ?>      
-      <li <?php echo e(\Request::route()->getName() == "settings.noti" ? "class=active" : ""); ?>>
-        <a href="<?php echo e(route('settings.noti')); ?>">
-          <i class="fa fa-pencil-square-o"></i> 
-          <span>Thông báo chung</span>         
-        </a>       
-      </li>
-      <?php endif; ?>
+     
       <li class="treeview <?php echo e(in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'estate-type.index', 'estate-type.edit', 'estate-type.create', 'cate.index', 'cate.edit', 'cate.create']) ? 'active' : ''); ?>">
         <a href="#">
           <i class="fa fa-opencart"></i> 
@@ -31,7 +24,7 @@
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu">
+        <ul class="treeview-menu">  
           <li <?php echo e(in_array(\Request::route()->getName(), ['product.index', 'product.edit']) ? "class=active" : ""); ?>><a href="<?php echo e(route('product.index')); ?>"><i class="fa fa-circle-o"></i> Danh sách</a></li>
           <li <?php echo e(\Request::route()->getName() == "product.create" ? "class=active" : ""); ?>><a href="<?php echo e(route('product.create')); ?>"><i class="fa fa-circle-o"></i> Thêm BĐS</a></li>         
           <?php if(Auth::user()->role > 1): ?>
@@ -51,27 +44,7 @@
           <span>Tin ký gửi</span>         
         </a>       
       </li>
-      <li <?php echo e(in_array(\Request::route()->getName(), ['cart.create', 'cart.edit', 'cart.index','cart-product.create', 'cart-product.edit', 'cart-product.index']) ? "class=active" : ""); ?>>
-        <a href="<?php echo e(route('cart.index')); ?>">
-          <i class="fa fa-pencil-square-o"></i> 
-          <span>Giỏ hàng</span>         
-        </a>       
-      </li>       
-      <li class="treeview <?php echo e(in_array(\Request::route()->getName(), ['work-group.create', 'work-group.edit', 'work-group.index', 'user-work.create', 'user-work.edit', 'user-work.index']) ? 'active' : ''); ?>">
-        <a href="#">
-          <i class="fa fa-twitch"></i> 
-          <span>Công việc</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li <?php echo e(in_array(\Request::route()->getName(), ['user-work.create', 'user-work.edit', 'user-work.index']) ? "class=active" : ""); ?>><a href="<?php echo e(route('user-work.index')); ?>"><i class="fa fa-circle-o"></i> Công việc </a></li>
-          <?php if(Auth::user()->role > 1): ?>
-          <li <?php echo e(in_array(\Request::route()->getName(), ['work-group.create', 'work-group.edit', 'work-group.index']) ? "class=active" : ""); ?>><a href="<?php echo e(route('work-group.index')); ?>"><i class="fa fa-circle-o"></i> Nhóm công việc</a></li>          
-          <?php endif; ?>
-        </ul>
-      </li>
+      
       <?php if(Auth::user()->role > 1): ?>
       <li <?php echo e(in_array(\Request::route()->getName(), ['customer.edit', 'customer.index']) ? "class=active" : ""); ?>>
         <a href="<?php echo e(route('customer.index')); ?>">
