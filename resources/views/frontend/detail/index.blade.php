@@ -7,6 +7,255 @@
 
 @include('frontend.partials.meta')
 @section('content')
+
+
+<div class="container">
+    <div id="main">
+        <div class="row">
+            <div class="span9">
+                <h1 class="page-header">{!! $detail->title !!}</h1>
+
+                <div class="carousel property">
+                    <div class="preview">
+                        <img src="{{ Helper::showImage($hinhArr[0]['image_url']) }}" alt="{!! $detail->title !!}">
+                    </div><!-- /.preview -->
+
+                    <div class="content">
+
+                        <a class="carousel-prev" href="#">Previous</a>
+                        <a class="carousel-next" href="#">Next</a>
+                        <ul>
+                        	<?php $i = 0;?>
+                        	@foreach( $hinhArr as $hinh )
+                        	<?php $i++; ?>
+							<li @if($i == 1 ) class="active" @endif><img src="{{ Helper::showImage($hinh['image_url']) }}" alt="{!! $detail->title !!} {{ $i }}" /></li>
+                            @endforeach                                                 
+                        </ul>
+                    </div>
+                    <!-- /.content -->
+                </div>
+                <!-- /.carousel -->
+
+                <div class="property-detail">
+                    <div class="pull-left overview">
+                        <div class="row">
+                            <div class="span3">
+                                <h2>Đặc điểm BĐS</h2>
+
+                                <table>                                    
+                                    <tr>
+                                        <th>Mã tin:</th>
+                                        <td>{{ $detail->id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Giá:</th>
+                                        <td>{{ $detail->price }} {!! Helper::getName($detail->price_unit_id, 'price_unit') !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Diện tích:</th>
+                                        <td>{!! $detail->area !!} m<sup>2</sup></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Loại tin rao:</th>
+                                        <td>{!! Helper::getName($detail->estate_type_id, 'estate_type') !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ngày đăng tin:</th>
+                                        <td>{{ date('d/m/Y', strtotime($detail->created_at)) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Hướng nhà:</th>
+                                        <td>{!! $detail->direction_id > 0 ? Helper::getName($detail->direction_id, 'direction')  : "KXD" !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Số phòng:</th>
+                                        <td>{{ $detail->no_room }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Số toilet:</th>
+                                        <td>{{ $detail->no_wc }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.span2 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                   
+                    <p>{!! $detail->description !!}</p>
+                    <div class="clearfix"></div>
+                    <h2>Tiện ích xung quanh</h2>
+
+                    <div class="row">
+                        <ul class="span2">
+                            <li class="checked">
+                                Air conditioning
+                            </li>
+                            <li class="checked">
+                                Balcony
+                            </li>                            
+                        </ul>                        
+                      
+                    </div>
+
+                    <h2>Map</h2>
+
+                    <div id="property-map"></div><!-- /#property-map -->
+                </div>
+
+            </div>
+            <div class="sidebar span3">
+                <div class="widget our-agents">
+    <div class="title">
+        <h2>Our Agents</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <div class="agent">
+            <div class="image">
+                <img src="assets/img/photos/emma-small.png" alt="">
+            </div><!-- /.image -->
+            <div class="name">Victoria Summer</div><!-- /.name -->
+            <div class="phone">333-666-777</div><!-- /.phone -->
+            <div class="email"><a href="mailto:victoria@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+
+        <div class="agent">
+            <div class="image">
+                <img src="assets/img/photos/john-small.png" alt="">
+            </div><!-- /.image -->
+            <div class="name">John Doe</div><!-- /.name -->
+            <div class="phone">111-222-333</div><!-- /.phone -->
+            <div class="email"><a href="mailto:john.doe@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+    </div><!-- /.content -->
+</div><!-- /.our-agents -->
+                <div class="widget contact">
+    <div class="title">
+        <h2 class="block-title">Contact agent</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <form method="post">
+            <div class="control-group">
+                <label class="control-label" for="inputName">
+                    Name
+                    <span class="form-required" title="This field is required.">*</span>
+                </label>
+                <div class="controls">
+                    <input type="text" id="inputName">
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="control-group">
+                <label class="control-label" for="inputEmail">
+                    Email
+                    <span class="form-required" title="This field is required.">*</span>
+                </label>
+                <div class="controls">
+                    <input type="text" id="inputEmail">
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="control-group">
+                <label class="control-label" for="inputMessage">
+                    Message
+                    <span class="form-required" title="This field is required.">*</span>
+                </label>
+
+                <div class="controls">
+                    <textarea id="inputMessage"></textarea>
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="form-actions">
+                <input type="submit" class="btn btn-primary arrow-right" value="Send">
+            </div><!-- /.form-actions -->
+        </form>
+    </div><!-- /.content -->
+</div><!-- /.widget -->
+                <div class="widget properties last">
+    <div class="title">
+        <h2>Latest Properties</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-4.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-5.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-6.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+
+        <div class="property">
+            <div class="image">
+                <a href="detail.html"></a>
+                <img src="assets/img/tmp/property-small-2.png" alt="">
+            </div><!-- /.image -->
+
+            <div class="wrapper">
+                <div class="title">
+                    <h3>
+                        <a href="detail.html">27523 Pacific Coast</a>
+                    </h3>
+                </div><!-- /.title -->
+                <div class="location">Palo Alto CA</div><!-- /.location -->
+                <div class="price">€2 300 000</div><!-- /.price -->
+            </div><!-- /.wrapper -->
+        </div><!-- /.property -->
+    </div><!-- /.content -->
+</div><!-- /.properties -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <section class="col-sm-8 col-xs-12 block-sitemain">
 <article class="block-breadcrumb-page">
 	<ul class="breadcrumb">	
@@ -212,7 +461,7 @@
       	
         var myLatLng = {lat: {{ $latt }}, lng: {{ $longt }} };
 
-        var map = new google.maps.Map(document.getElementById('map-abc'), {
+        var map = new google.maps.Map(document.getElementById('property-map'), {
           zoom: 17,
           center: myLatLng
         });
@@ -231,57 +480,13 @@
             
       }
     </script>
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhxs7FQ3DcyDm8Mt7nCGD05BjUskp_k7w&libraries=places&callback=initAutocomplete"
          async defer></script>
 <script type="text/javascript">
- $(document).ready(function () {
-    $('.bxslider .item').each(function () {
-        $(this).zoom();
-    });
-
-    $(".bxslider").bxSlider({
-    	controls: false,
-        pagerCustom: '.pro-thumb-img',
-        nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>',
-        adaptiveHeight: true
-    });
-
-    $(".pro-thumb-img").bxSlider({
-        slideMargin: 20,
-        maxSlides: 4,
-        pager: false,
-        controls: true,
-        slideWidth: 80,
-        infiniteLoop: false,
-        nextText: '<i class="fa fa-angle-right"></i>',
-        prevText: '<i class="fa fa-angle-left"></i>'
-    });
-    /** COUNT DOWN **/
-	$('[data-countdown]').each(function() {
-		var $this = $(this), finalDate = $(this).data('countdown');
-		$this.countdown(finalDate, function(event) {
-			var fomat ='<i class="fa fa-clock-o"></i> <b>Thời gian còn lại:</b> <span>%D ngày,</span> <span>%H</span> : %M<span class="minute"></span> : %S<span class="seconds"></span>';
-			$this.html(event.strftime(fomat));
-		});
-	});
-	$('.bxslider').bxSlider({
-		pagerCustom: '#bx-pager',
-		pager: true,
-		adaptiveHeight: true
-	});
-	$('.slide-detail').bxSlider({
-		pagerCustom: '#bx-pager-detail',
-		pager: true,
-		adaptiveHeight: true,
-		auto : true,
-		pause : 4000
-	});
-
-});
-
+	var locations = new Array(
+        [{!! $latt !!},{!! $longt !!}]
+    );
 </script>
-@endsection
-
-@section('javascript_page')
 @endsection

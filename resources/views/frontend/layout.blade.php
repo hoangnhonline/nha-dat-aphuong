@@ -388,7 +388,7 @@
         </div>       
         
         <!-- /.palette -->
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAhxs7FQ3DcyDm8Mt7nCGD05BjUskp_k7w&v=3&amp;sensor=true"></script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/jquery.ezmark.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/jquery.currency.js') }}"></script>
@@ -402,6 +402,8 @@
         <script type="text/javascript" src="{{ URL::asset('assets/libraries/chosen/chosen.jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('assets/libraries/iosslider/_src/jquery.iosslider.min.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+         @yield('javascript_page')
         <script type="text/javascript" src="{{ URL::asset('assets/js/realia.js') }}"></script>
+
     </body>
 </html>
