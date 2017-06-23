@@ -8,108 +8,95 @@
                 <div class="span3">
                     <div class="property-filter pull-right">
                         <div class="content">
-                            <form method="get" action="?">
-                                <div class="location control-group">
-                                    <label class="control-label" for="inputLocation">
-                                    Location
-                                    </label>
+                            <form method="get" action="{{ route('search') }}">
+                                <div class="location control-group">                                    
                                     <div class="controls">
-                                        <select id="inputLocation">
-                                            <option id="malibu">Malibu, CA</option>
-                                            <option id="palo-alto">Palo Alto, CA</option>
+                                        <select name="type" id="type">
+                                            <option selected="selected" value="1">BĐS bán</option>
+                                            <option value="2">BĐS cho thuê</option>                                     
+                                        </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>    
+                                <div class="location control-group">                                    
+                                    <div class="controls">
+                                        <select name="estate_type_id" id="estate_type_id">
+                                            <option selected="selected" value="">Loại bất động sản</option>
+                                            @foreach($banList as $ban)
+                                            <option value="{{ $ban->id }}">{!! $ban->name !!}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>                                
+                                <div class="location control-group">                                    
+                                    <div class="controls">
+                                        <select id="district_id" name="district_id">
+                                            <option selected="selected" value="">Quận/Huyện</option>
+                                            @foreach($districtList as $district)
+                                            <option value="{{ $district->id }}">{!! $district->name !!}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="type control-group">                                    
+                                    <div class="controls">
+                                        <select id="ward_id" name="ward_id">
+                                        <option value="">Phường/Xã</option>                                        
+                                    
+                                    </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <!-- /.control-group -->
+                                <div class="type control-group">
+                                    
+                                    <div class="controls">
+                                        <select id="street_id" name="street_id" >
+                                            <option value="">Đường/Phố</option>
                                         </select>
                                     </div>
                                     <!-- /.controls -->
                                 </div>
                                 <!-- /.control-group -->
                                 <div class="type control-group">
-                                    <label class="control-label" for="inputType">
-                                    Type
-                                    </label>
+                                    
                                     <div class="controls">
-                                        <select id="inputType">
-                                            <option id="apartment">Apartment</option>
-                                            <option id="condo">Condo</option>
+                                        <select id="project_id" name="project_id">
+                                        <option value="">Dự án</option>
+                                    </select>
+                                    </div>
+                                    <!-- /.controls -->
+                                </div>
+                                <div class="type control-group">
+                                    
+                                    <div class="controls">
+                                        <select name="price_id" id="price_id">
+                                            <option value="">Mức giá</option>
+                                            @foreach($priceList as $price)
+                                            <option  value="{{ $price->id }}">{!! $price->name !!}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <!-- /.controls -->
-                                </div>
-                                <!-- /.control-group -->
-                                <div class="beds control-group">
-                                    <label class="control-label" for="inputBeds">
-                                    Beds
-                                    </label>
+                                </div>                               
+                                <div class="type control-group">
+                                    
                                     <div class="controls">
-                                        <select id="inputBeds">
-                                            <option id="11">1</option>
-                                            <option id="21">2</option>
+                                        <select id="area_id" name="area_id">
+                                            <option value="">Diện tích</option>
+                                            @foreach($areaList as $area)
+                                            <option value="{{ $area->id }}">{!! $area->name !!}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <!-- /.controls -->
-                                </div>
-                                <!-- /.control-group -->
-                                <div class="baths control-group">
-                                    <label class="control-label" for="inputBaths">
-                                    Baths
-                                    </label>
-                                    <div class="controls">
-                                        <select id="inputBaths">
-                                            <option id="1">1</option>
-                                            <option id="2">2</option>
-                                        </select>
-                                    </div>
-                                    <!-- /.controls -->
-                                </div>
-                                <!-- /.control-group -->
-                                <div class="rent control-group">
-                                    <div class="controls">
-                                        <label class="checkbox" for="inputRent">
-                                        <input type="checkbox" id="inputRent"> Rent
-                                        </label>
-                                    </div>
-                                    <!-- /.controls -->
-                                </div>
-                                <!-- /.control-group -->
-                                <div class="sale control-group">
-                                    <div class="controls">
-                                        <label class="checkbox" for="inputSale">
-                                        <input type="checkbox" id="inputSale"> Sale
-                                        </label>
-                                    </div>
-                                    <!-- /.controls -->
-                                </div>
-                                <!-- /.control-group -->
-                                <div class="price-from control-group">
-                                    <label class="control-label" for="inputPriceFrom">
-                                    Price from
-                                    </label>
-                                    <div class="controls">
-                                        <input type="text" id="inputPriceFrom" name="inputPriceFrom">
-                                    </div>
-                                    <!-- /.controls -->
-                                </div>
-                                <!-- /.control-group -->
-                                <div class="price-to control-group">
-                                    <label class="control-label" for="inputPriceTo">
-                                    Price to
-                                    </label>
-                                    <div class="controls">
-                                        <input type="text" id="inputPriceTo" name="inputPriceTo">
-                                    </div>
-                                    <!-- /.controls -->
-                                </div>
-                                <!-- /.control-group -->
-                                <div class="price-value">
-                                    <span class="from"></span><!-- /.from -->
-                                    -
-                                    <span class="to"></span><!-- /.to -->
-                                </div>
-                                <!-- /.price-value -->
-                                <div class="price-slider">
                                 </div>
                                 <!-- /.price-slider -->
                                 <div class="form-actions">
-                                    <input type="submit" value="Filter now!" class="btn btn-primary btn-large">
+                                    <input type="submit" value="Tìm kiếm" id="btnSearch" class="btn btn-primary btn-large">
                                 </div>
                                 <!-- /.form-actions -->
                             </form>
@@ -136,13 +123,9 @@
 				return false;
 			}		
 		});
-		$('#tab-search li a').click(function(){
+		$('#type').change(function(){
 			obj = $(this);
-			var type = obj.data('type');
-			$('#type').val(type);
-			$('#tab-search li').removeClass('active');
-			obj.parents('li').addClass('active');
-
+			var type = obj.val();
 			$.ajax({
 				url : '{{ route('get-child') }}',
 				data : {
@@ -153,7 +136,8 @@
 				type : 'POST',
 				dataType : 'html',
 				success : function(data){
-					$('#estate_type_id').html(data).selectpicker('refresh');
+					$('#estate_type_id').html(data).trigger("liszt:updated");
+                    $('#estate_type_id').trigger("liszt:updated");
 				}
 			});
 			$.ajax({
@@ -166,7 +150,7 @@
 				type : 'POST',
 				dataType : 'html',
 				success : function(data){
-					$('#price_id').html(data).selectpicker('refresh');
+					$('#price_id').html(data).trigger("liszt:updated");
 				}
 			});
 		});

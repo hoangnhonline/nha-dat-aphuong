@@ -76,10 +76,19 @@ class HomeController extends Controller
     public function index(Request $request)
     {  
         $productArr = [];
-        $hoverInfo = [];
+        $locationStr = '';
         $loaiSp = EstateType::where('status', 1)->get();
         $bannerArr = [];          
         $articlesArr = Articles::where(['cate_id' => 1])->orderBy('id', 'desc')->get();
+        $specialProduct = Product::where('product.slug', '<>', '')                    
+                    ->where('product.status', 1)
+                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')            
+                    ->join('estate_type', 'estate_type.id', '=','product.estate_type_id')      
+                    ->select('product_img.image_url as image_urls', 'product.*', 'estate_type.slug as slug_loai')
+                    ->where('product_img.image_url', '<>', '')                                         
+                    ->orderBy('product.is_hot', 'desc')
+                    ->orderBy('product.cart_status', 'asc')                    
+                    ->orderBy('product.id', 'desc')->limit(4)->get();
         $hotProduct = Product::where('product.slug', '<>', '')
                     ->where('product.type', 1)
                     ->where('product.status', 1)
@@ -101,7 +110,15 @@ class HomeController extends Controller
                     ->orderBy('product.cart_status', 'asc')                    
                     ->orderBy('product.id', 'desc')                    
                     ->limit(6)->get();
-        
+        $locationList = Product::where('status', 1)->select(['latt', 'longt'])->get();
+        //dd($locationList);
+        $firstLocation = $locationList->first();        
+        foreach($locationList as $location){       
+            if($location->latt){  
+                $locationStr .= $location->latt.",".$location->longt."|";
+            }
+        }
+        $locationStr = rtrim($locationStr,";");
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
         $seo = $settingArr;
         $seo['title'] = $settingArr['site_title'];
@@ -122,7 +139,7 @@ class HomeController extends Controller
         
         
 
-        return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan'));
+        return view('frontend.home.index', compact('bannerArr', 'articlesArr', 'socialImage', 'seo', 'countMess', 'hotProduct', 'tinThiTruong', 'luat', 'khonggiansong', 'phongthuy', 'tinRandom','hotProduct2', 'luat', 'tuvan', 'specialProduct', 'locationStr', 'firstLocation'));
 
     }
 

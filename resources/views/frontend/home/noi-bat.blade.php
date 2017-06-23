@@ -4,134 +4,54 @@
         <h2 class="page-header">BĐS nổi bật</h2>
         <div class="properties-grid">
             <ul class="row">
-                <div class="property span3">
+                @foreach($specialProduct as $product)
+                 <div class="property span3">
                     <div class="image">
                         <div class="content">
-                            <a href="detail.html"></a>
-                            <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
+                            <a href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}"></a>
+                            <img src="{{ $product->image_urls ? Helper::showImageThumb($product->image_urls) : URL::asset('backend/dist/img/no-image.jpg') }}" alt="{!! $product->title !!}">
                         </div>
                         <!-- /.content -->
+                        <div class="price">{!! $product->price !!} {!! Helper::getName($product->price_unit_id, 'price_unit') !!}  </div>
+                        <!-- /.price -->
+                        @if($product->type == 1)
+                            @if($product->cart_status == 1)
+                              <span class="reduced label label-primary">Chưa bán</span>
+                            @else
+                              <span class="reduced label label-danger">Đã bán</span>
+                            @endif              
+                        @else
+                            @if($product->cart_status == 1)
+                              <span class="reduced label label-primary">Còn trống</span>
+                            @else
+                              <span class="reduced label label-danger">Đã thuê</span>
+                            @endif
+                        @endif
+                        <!--<div class="reduced">Reduced </div>-->
+                        <!-- /.reduced -->
                     </div>
                     <!-- /.image -->
                     <div class="title">
-                        <h2><a href="detail.html">27523 Pacific Coast</a></h2>
+                        <h2><a href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}">{!! $product->title !!}</a></h2>
                     </div>
                     <!-- /.title -->
-                    <div class="location">Palo Alto CA</div>
+                    <div class="location">{!! Helper::getName($product->district_id, 'district') !!} - {!! Helper::getName($product->city_id, 'city') !!}</div>
                     <!-- /.location -->
-                    <div class="price">1 250 000€</div>
-                    <!-- /.price -->
                     <div class="area">
-                        <span class="key">Area:</span><!-- /.key -->
-                        <span class="value">120</span><!-- /.value -->
+                        <span class="key">DT:</span><!-- /.key -->
+                        <span class="value">{!! $product->area !!} m<sup>2</sup></span><!-- /.value -->
                     </div>
                     <!-- /.area -->
                     <div class="bedrooms">
-                        <div class="content">4</div>
+                        <div class="content">{!! $product->no_room !!}</div>
                     </div>
                     <!-- /.bedrooms -->
                     <div class="bathrooms">
-                        <div class="content">3</div>
+                        <div class="content">{!! $product->no_wc !!}</div>
                     </div>
                     <!-- /.bathrooms -->
-                </div>
-                <!-- /.property span3 -->
-                <div class="property span3">
-                    <div class="image">
-                        <div class="content">
-                            <a href="detail.html"></a>
-                            <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
-                        </div>
-                        <!-- /.content -->
-                    </div>
-                    <!-- /.image -->
-                    <div class="title">
-                        <h2><a href="detail.html">27523 Pacific Coast</a></h2>
-                    </div>
-                    <!-- /.title -->
-                    <div class="location">Palo Alto CA</div>
-                    <!-- /.location -->
-                    <div class="price">1 250 000€</div>
-                    <!-- /.price -->
-                    <div class="area">
-                        <span class="key">Area:</span><!-- /.key -->
-                        <span class="value">120</span><!-- /.value -->
-                    </div>
-                    <!-- /.area -->
-                    <div class="bedrooms">
-                        <div class="content">4</div>
-                    </div>
-                    <!-- /.bedrooms -->
-                    <div class="bathrooms">
-                        <div class="content">3</div>
-                    </div>
-                    <!-- /.bathrooms -->
-                </div>
-                <!-- /.property span3 -->
-                <div class="property span3">
-                    <div class="image">
-                        <div class="content">
-                            <a href="detail.html"></a>
-                            <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
-                        </div>
-                        <!-- /.content -->
-                    </div>
-                    <!-- /.image -->
-                    <div class="title">
-                        <h2><a href="detail.html">27523 Pacific Coast</a></h2>
-                    </div>
-                    <!-- /.title -->
-                    <div class="location">Palo Alto CA</div>
-                    <!-- /.location -->
-                    <div class="price">1 250 000€</div>
-                    <!-- /.price -->
-                    <div class="area">
-                        <span class="key">Area:</span><!-- /.key -->
-                        <span class="value">120</span><!-- /.value -->
-                    </div>
-                    <!-- /.area -->
-                    <div class="bedrooms">
-                        <div class="content">4</div>
-                    </div>
-                    <!-- /.bedrooms -->
-                    <div class="bathrooms">
-                        <div class="content">3</div>
-                    </div>
-                    <!-- /.bathrooms -->
-                </div>
-                <!-- /.property span3 -->
-                <div class="property span3">
-                    <div class="image">
-                        <div class="content">
-                            <a href="detail.html"></a>
-                            <img src="{{ URL::asset('assets/img/tmp/property-small-3.png') }}" alt="">
-                        </div>
-                        <!-- /.content -->
-                    </div>
-                    <!-- /.image -->
-                    <div class="title">
-                        <h2><a href="detail.html">27523 Pacific Coast</a></h2>
-                    </div>
-                    <!-- /.title -->
-                    <div class="location">Palo Alto CA</div>
-                    <!-- /.location -->
-                    <div class="price">1 250 000€</div>
-                    <!-- /.price -->
-                    <div class="area">
-                        <span class="key">Area:</span><!-- /.key -->
-                        <span class="value">120</span><!-- /.value -->
-                    </div>
-                    <!-- /.area -->
-                    <div class="bedrooms">
-                        <div class="content">4</div>
-                    </div>
-                    <!-- /.bedrooms -->
-                    <div class="bathrooms">
-                        <div class="content">3</div>
-                    </div>
-                    <!-- /.bathrooms -->
-                </div>
-                <!-- /.property span3 -->
+                </div>                        
+                @endforeach  
                
             </ul>
         </div>

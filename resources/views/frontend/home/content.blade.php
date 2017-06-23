@@ -289,4 +289,7 @@
         </div>
     </div>
   </div>
+<input type="hidden" id="location_list" value="{{ $locationStr }}">
+<input type="hidden" id="latt_center" value="{{ $firstLocation->latt }}">
+<input type="hidden" id="longt_center" value="{{ $firstLocation->longt }}">
 @endsection

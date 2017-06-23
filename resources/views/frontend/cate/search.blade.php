@@ -1,71 +1,104 @@
 @extends('frontend.layout')
 @include('frontend.partials.meta')
 @section('content')
-<article class="block-breadcrumb-page">
-	<ul class="breadcrumb">	
-		<li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>		
-		<li class="active">Tìm kiếm</li>
-	</ul>
-</article>
-<section class="col-sm-8 col-xs-12 block-sitemain">
-	<article class="block block-news-new block-news-cate clearfix">
-		<div class="block-cate-title"><h1>Kết quả tìm kiếm</h1></div>
-		<div class="block-searchresult">			
-			<span class="block-countresult">Có <b>{{ number_format(count($productList)) }}</b> bất động sản</span>
-		</div>
-		<div class="col-sm-12 col-xs-12">
-			<div class="row">
-				<div class="block-title block-title-catenews">
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs nav-tabs-cus" role="tablist">
-						<li role="presentation" class="active"><a href="#dsrt" aria-controls="dsrt" role="tab" data-toggle="tab"><i class="fa fa-list"></i> Danh sách kết quả</a></li>
-					</ul>
-				</div>
-				<div class="block-contents">
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="home">
-						@if(!empty( (array) $productList ))
-							<ul>
-								@foreach( $productList as $product )
-								<li class="news-new-item">
-									<div class="news-new-item-head"><a href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}"><img title="{{ $product->title }}" src="{{ $product->image_urls ? Helper::showImageThumb($product->image_urls) : URL::asset('backend/dist/img/no-image.jpg') }}" alt="{!! $product->title !!}"></a></div>
-									<div class="news-new-item-description">
-										<h4>
-											<a class="description-title vip1" title="{{ $product->title }}" href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}"><i class="vipdb fa fa-star"></i> {!! $product->title !!} @if( $product->is_hot == 1 )
-						                  <img src="{{ URL::asset('backend/dist/img/star.png')}}" alt="Nổi bật" title="Nổi bật" />
-						                  @endif</a>
-											
-											</h4>
-                						<div class="description-info">
-                							<div class="id-post"><i class="fa fa-rebel" aria-hidden="true"></i><label>Mã tin<span>:</span></label>{{ $product->id }}</div>
-                							<div class="price"><label>Giá<span>:</span></label>{{ $product->price }} {!! Helper::getName($product->price_unit_id, 'price_unit') !!}</div>
-				                            <div class="area"><label>Diện tích<span>:</span></label>{!! $product->area !!} m<sup>2</sup></div>
-				                            <div class="location"><label>Vị trí<span>:</span></label>{!! Helper::getName($product->district_id, 'district') !!} - {!! Helper::getName($product->city_id, 'city') !!}</div>
-                						</div>
-                						<span class="date">{{ date('d/m/Y', strtotime($product->created_at)) }}</span>
-									</div>
-								</li>
-								@endforeach
-								
-							</ul>
-							@endif
-							<!--<nav class="block-pagination">
-								<ul class="pagination">
-									<li><a class="selected" href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Previous">Trang sau</a></li>
-									<li><a href="#" aria-label="Next">Trang cuối</a></li>
-								</ul>
-							</nav>-->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</article><!-- /block-news-new -->
-</section><!-- /block-site-left -->
+<div class="container">
+
+    <div id="main">
+        <div class="row">
+            <div class="span9">
+                <h1 class="page-header">Kết quả tìm kiếm ({{ number_format(count($productList)) }})</h1>
+
+                <div class="properties-grid">
+    @if(!empty( (array) $productList ))
+    <div class="row">
+        @foreach( $productList as $product )
+        <div class="property span3">
+            <div class="image">
+                <div class="content">
+                    <a href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}" title="{!! $product->title !!}"></a>
+                    <img title="{{ $product->title }}" src="{{ $product->image_urls ? Helper::showImageThumb($product->image_urls) : URL::asset('backend/dist/img/no-image.jpg') }}" alt="{!! $product->title !!}">
+                </div><!-- /.content -->
+
+                <div class="price">{!! $product->price !!} {!! Helper::getName($product->price_unit_id, 'price_unit') !!}</div><!-- /.price -->                
+                @if($product->type == 1)
+                    @if($product->cart_status == 1)
+                      <div class="reduced label label-primary">Chưa bán</div>
+                    @else
+                      <div class="reduced label label-danger">Đã bán</div>
+                    @endif              
+                @else
+                    @if($product->cart_status == 1)
+                      <div class="reduced label label-primary">Còn trống</div>
+                    @else
+                      <div class="reduced label label-danger">Đã thuê</div>
+                    @endif
+                @endif
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="detail.html">{!! $product->title !!}</a></h2>
+            </div><!-- /.title -->
+
+            <div class="location">{!! Helper::getName($product->district_id, 'district') !!} - {!! Helper::getName($product->city_id, 'city') !!}</div><!-- /.location -->
+            <div class="area">
+                <span class="key">Diện tích:</span><!-- /.key -->
+                <span class="value">{!! $product->area !!} m<sup>2</sup></span><!-- /.value -->
+            </div><!-- /.area -->
+            <div class="bedrooms"><div class="content">{!! $product->no_room !!}</div></div><!-- /.bedrooms -->
+            <div class="bathrooms"><div class="content">{!! $product->no_wc !!}</div></div><!-- /.bathrooms -->
+        </div><!-- /.property -->
+        @endforeach       
+    </div><!-- /.row -->
+    @endif
+</div><!-- /.properties-grid -->
+<!--
+<div class="pagination pagination-centered">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li class="active"><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">next</a></li>
+        <li><a href="#">last</a></li>
+    </ul>
+</div><!-- /.pagination -->            </div>
+            <div class="sidebar span3">
+                <div class="widget our-agents">
+    <div class="title">
+        <h2>Our Agents</h2>
+    </div><!-- /.title -->
+
+    <div class="content">
+        <div class="agent">
+            <div class="image">
+                <img src="assets/img/photos/emma-small.png" alt="">
+            </div><!-- /.image -->
+            <div class="name">Victoria Summer</div><!-- /.name -->
+            <div class="phone">333-666-777</div><!-- /.phone -->
+            <div class="email"><a href="mailto:victoria@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+
+        <div class="agent">
+            <div class="image">
+                <img src="assets/img/photos/john-small.png" alt="">
+            </div><!-- /.image -->
+            <div class="name">John Doe</div><!-- /.name -->
+            <div class="phone">111-222-333</div><!-- /.phone -->
+            <div class="email"><a href="mailto:john.doe@example.com">victoria@example.com</a></div><!-- /.email -->
+        </div><!-- /.agent -->
+    </div><!-- /.content -->
+</div><!-- /.our-agents -->
+                <div class="ad widget">
+    <h2>Advertisements</h2>
+    <div class="content">
+        <a href="#"><img src="assets/img/banner/1.gif" alt="Banner"></a>
+        <a href="#"><img src="assets/img/banner/2.gif" alt="Banner"></a>
+        <a href="#"><img src="assets/img/banner/3.gif" alt="Banner"></a>
+        <a href="#"><img src="assets/img/banner/4.gif" alt="Banner"></a>
+    </div><!-- /.content -->
+</div><!-- /.ad -->
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

@@ -3274,7 +3274,7 @@ iframe.map {
 }
 .map .row .span3 {
     float: right;
-    margin-top: -450px;
+    margin-top: -475px;
     z-index: 9999
 }
 @media (max-width: 767px) {
