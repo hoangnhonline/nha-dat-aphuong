@@ -174,7 +174,9 @@
             <!-- /#wrapper -->
         </div>
         <!-- /.palette -->
+        @if(\Request::route()->getName() == 'home')
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAhxs7FQ3DcyDm8Mt7nCGD05BjUskp_k7w&v=3&amp;sensor=true"></script>
+        @endif        
         <script type="text/javascript" src="{{ URL::asset('assets/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/jquery.ezmark.js') }}"></script>
         <script type="text/javascript" src="{{ URL::asset('assets/js/jquery.currency.js') }}"></script>

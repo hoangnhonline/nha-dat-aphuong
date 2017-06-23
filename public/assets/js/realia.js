@@ -1,9 +1,12 @@
 $(document).ready(function() {
+    InitChosen();
 	InitCarousel();
     InitPropertyCarousel();
 	InitOffCanvasNavigation();
-	InitMap();
-	InitChosen();
+    if($('#map').length == 1){
+	   InitMap();
+    }
+	
 	InitEzmark();
 	InitPriceSlider();
 	InitImageSlider();
