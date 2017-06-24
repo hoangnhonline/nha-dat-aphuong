@@ -88,9 +88,20 @@ class LandingProjectsController extends Controller
             
             File::move(config('icho.upload_path').$dataArr['image_url'], config('icho.upload_path').$destionation);           
             
-            Image::make(config('icho.upload_path').$destionation)->resize(306, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                        })->crop(306, 194)->save(config('icho.upload_thumbs_path_projects').'306x194/'.$destionation);
+            $tile2 = 0.06232734;
+            $w_tile2 = $w_img/306;
+            $h_tile2 = $h_img/194;
+         
+            if($w_tile2- $h_tile2 <= $tile2){
+                Image::make(config('icho.upload_path').$destionation)->resize(306, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(306, 194)->save(config('icho.upload_thumbs_path_articles').$destionation);
+            }else{
+                Image::make(config('icho.upload_path').$destionation)->resize(null, 194, function ($constraint) {
+                        $constraint->aspectRatio();
+                })->crop(306, 194)->save(config('icho.upload_thumbs_path_articles').$destionation);
+            }
+            
             $dataArr['image_url'] = $destionation;
         }
 
