@@ -64,40 +64,7 @@
     </ul>
 </div><!-- /.pagination -->            </div>
             <div class="sidebar span3">
-                <div class="widget our-agents">
-    <div class="title">
-        <h2>Our Agents</h2>
-    </div><!-- /.title -->
-
-    <div class="content">
-        <div class="agent">
-            <div class="image">
-                <img src="assets/img/photos/emma-small.png" alt="">
-            </div><!-- /.image -->
-            <div class="name">Victoria Summer</div><!-- /.name -->
-            <div class="phone">333-666-777</div><!-- /.phone -->
-            <div class="email"><a href="mailto:victoria@example.com">victoria@example.com</a></div><!-- /.email -->
-        </div><!-- /.agent -->
-
-        <div class="agent">
-            <div class="image">
-                <img src="assets/img/photos/john-small.png" alt="">
-            </div><!-- /.image -->
-            <div class="name">John Doe</div><!-- /.name -->
-            <div class="phone">111-222-333</div><!-- /.phone -->
-            <div class="email"><a href="mailto:john.doe@example.com">victoria@example.com</a></div><!-- /.email -->
-        </div><!-- /.agent -->
-    </div><!-- /.content -->
-</div><!-- /.our-agents -->
-                <div class="ad widget">
-    <h2>Advertisements</h2>
-    <div class="content">
-        <a href="#"><img src="assets/img/banner/1.gif" alt="Banner"></a>
-        <a href="#"><img src="assets/img/banner/2.gif" alt="Banner"></a>
-        <a href="#"><img src="assets/img/banner/3.gif" alt="Banner"></a>
-        <a href="#"><img src="assets/img/banner/4.gif" alt="Banner"></a>
-    </div><!-- /.content -->
-</div><!-- /.ad -->
+                @include('frontend.partials.sidebar-general')
             </div>
         </div>
     </div>

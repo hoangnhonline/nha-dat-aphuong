@@ -45,7 +45,7 @@
                      <div class="row">
                         <div class="span12">
                            <ul class="breadcrumb pull-left">
-                              <li><a href="index.html">Home</a></li>
+                              <li><a href="{{ route('home') }}">Home</a></li>
                            </ul>
                            <!-- /.breadcrumb -->
                            <div class="account pull-right">
@@ -73,7 +73,7 @@
                                     <div class="logo-wrapper span4">
                                        <a href="#nav" class="hidden-desktop" id="btn-nav">Toggle navigation</a>
                                        <div class="logo">
-                                          <a href="index.html" title="Home">
+                                          <a href="{{ route('home') }}" title="Home">
                                           <img src="{{ URL::asset('assets/img/logo.png') }}" alt="Home">
                                           </a>
                                        </div>
@@ -141,15 +141,6 @@
                               </li>
                               <li><a href="contact-us.html">Contact Us</a></li>
                            </ul>
-                           <!-- /.language-switcher -->
-                           <form method="get" class="site-search" action="?">
-                              <div class="input-append">
-                                 <input title="Enter the terms you wish to search for." class="search-query span2 form-text" placeholder="Search" type="text" name="">
-                                 <button type="submit" class="btn"><i class="icon-search"></i></button>
-                              </div>
-                              <!-- /.input-append -->
-                           </form>
-                           <!-- /.site-search -->
                         </div>
                         <!-- /.navigation -->
                      </div>
