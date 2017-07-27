@@ -151,3 +151,36 @@ ul li {
 .list-your-property-form form.form-inline-style .unit input[type=text] {
     width: 95%;
 }
+.show-image ul {
+    padding: 0;
+    margin: 0;
+}
+.show-image li {
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.show-image li:last-child {
+  display: inline-block;
+  width: 95px;
+  height: 94px;
+}
+.register-avata {
+  /* display: none; */
+  width: 94px;
+  height: 94px;
+  overflow: hidden;
+  float: left;
+  margin-right: 4px;
+  position: relative;
+  background-color: transparent;
+  background-size: 94px 94px;
+}
+.register-avata .upload-item-delete {
+  background: url(../img/avatar-tool-delete.png) no-repeat;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  top: 0;
+  border: 0;
+}

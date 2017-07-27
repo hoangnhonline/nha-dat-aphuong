@@ -344,13 +344,16 @@
                         <span class="form-required" title="This field is required.">*</span>
                         </label>
                         <div class="controls">
-                           <p class="text-red">(Bạn có thể tải 16 ảnh và mỗi ảnh dung lượng không quá 4mb!)</p>
-                           <input type="file" id="file-image" class="inputfile inputfile-5" data-multiple-caption="{count} files selected" multiple="">
-                                 <label for="file-image"></label>
+                           <p class="text-red">(Bạn có thể tải 16 ảnh và mỗi ảnh dung lượng không quá 4mb!)</p>                         
                         </div>
-                        <!-- /.controls -->
-                        <div class="clearfix show-image" id="div-image" >
-                          
+                        <!-- /.controls -->                     
+                        <div class="clearfix show-image">
+                            <p>
+                                <input type="file" id="file-image" class="inputfile inputfile-5" multiple="">
+                            </p>
+                             <ul id="div-image">
+                               
+                             </ul>
                         </div>
                         <div style="clear:both"></div>
                      </div>

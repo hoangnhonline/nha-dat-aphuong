@@ -51,7 +51,7 @@ class UploadController extends Controller
                 }
             }
         }
-        return view('backend.product.upload-image-fe', compact( 'rsUpload' ));
+        return view('frontend.ky-gui.upload-image-fe', compact( 'rsUpload' ));
     }
     public function ckUpload(Request $request){
         $allowedExts = array("jpg", "jpeg", "gif", "png", 'JPG', 'PNG', 'JPEG', 'GIF');
