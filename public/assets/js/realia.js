@@ -5,10 +5,9 @@ $(document).ready(function() {
 	InitOffCanvasNavigation();
     if($('#map').length == 1){
 	   InitMap();
-    }
+    }	
 	
-	InitEzmark();
-	InitPriceSlider();
+	
 	InitImageSlider();
 	InitAccordion();
 	InitTabs();
@@ -203,8 +202,7 @@ function InitPriceSlider() {
 }
 
 function InitEzmark() {
-	$('input[type="checkbox"]').ezMark();
-	$('input[type="radio"]').ezMark();
+	
 }
 
 function InitChosen() {

@@ -1,3 +1,4 @@
+@if(\Request::route()->getName() != 'ky-gui')
 <div class="property-filter widget" style="margin-top:30px">
    <div class="content">
       <form method="get" action="{{ route('search') }}">
@@ -90,6 +91,8 @@
    </div>
    <!-- /.content -->
 </div>
+@endif
+
 <!-- /.property-filter -->
 <div class="widget our-agents">
    <div class="title">
