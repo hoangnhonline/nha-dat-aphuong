@@ -9,8 +9,8 @@
 /*==========*/
 
 .block-news {
-    background: #fff;
-    padding-bottom: 30px;
+  background: #fff;
+  padding-bottom: 30px;
 }
 .news-item .news-img {
     position: relative;
@@ -33,7 +33,7 @@
     opacity: 0.5;
 }
 .news-item .news-info {
-    min-height: 145px;
+  min-height: 145px;
     text-align: center;
     margin-top: 0px;
     padding: 0 15px;
@@ -79,6 +79,40 @@ ul li {
         padding-left: 20px;
         padding-right: 20px;
     }
+}
+.tabs-custom .tab-content {
+    padding: 20px 0;
+    box-shadow: none;
+}
+.tabs-custom .nav {
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 18px;    
+}
+
+.tabs-custom .nav-tabs > li > a {
+    color: #022a3b;
+    font-size: 18px;    
+}
+.tabs-custom .nav-tabs > li.active {
+    background-color: #0581B5;
+    
+}
+.tabs-custom .nav-tabs > li.active > a{
+    color:#FFF;
+    font-size: 18px;    
+}
+.tabs-custom .nav-tabs > .active > a, .tabs-custom .nav-tabs > .active > a:hover, .tabs-custom .nav-tabs > .active > a:focus {
+    color: #FFF;
+    cursor: default;
+    background-color: transparent;
+    border: none;
+    border-bottom-color: transparent;
+    font-size: 18px;    
+}
+.tabs-custom .nav-tabs > li > a:hover, .tabs-custom .nav-tabs > li > a:focus {
+    border-color: #eeeeee #eeeeee #dddddd;
+    font-size: 18px;    
 }
 
 /*===== Add Form Inline =====*/
