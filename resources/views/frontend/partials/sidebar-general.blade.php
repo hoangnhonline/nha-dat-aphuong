@@ -1,4 +1,4 @@
-@if(\Request::route()->getName() != 'ky-gui')
+@if(\Request::route()->getName() != 'ky-gui' && \Request::route()->getName() != 'home')
 <div class="property-filter widget" style="margin-top:30px">
    <div class="content">
       <form method="get" action="{{ route('search') }}">
